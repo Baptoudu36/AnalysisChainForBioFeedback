@@ -1,0 +1,36 @@
+{
+  "script_version": "1.2.0",
+  "timing": {
+    "samples": 7997,
+    "recorded_span_s": 9.9985301265001,
+    "measured_average_fs_hz": 799.7175483631744,
+    "median_interval_ms": 1.2499740000748716,
+    "interval_p95_jitter_fraction": 0.008443175732770885,
+    "maximum_interval_ms": 2.9683330003535957
+  },
+  "r_candidates": 11,
+  "accepted_rr_intervals": 10,
+  "excluded_rr_intervals": 0,
+  "median_hr_bpm": 73.09431975446893,
+  "mean_instantaneous_hr_bpm": 73.15389480423394,
+  "polarity_multiplier": -1,
+  "noise_estimate": 0.1183248008687601,
+  "noise_estimate_description": "High-frequency residual scale; used conservatively for P/Q/S/T only",
+  "r_background_scale": 0.09029366093516226,
+  "r_prominence_threshold": 0.5417619656109736,
+  "r_height_threshold": 0.435350882316494,
+  "r_threshold_mode": "filtered background",
+  "method": "0.5\u201340 Hz default bandpass; prominence R peaks; local-extrema P/Q/S/T candidates",
+  "filter_hz": [
+    0.5,
+    40
+  ],
+  "hr_search_bpm": [
+    35,
+    180
+  ],
+  "warnings": [
+    "PQRST are exploratory peak candidates; inspect the plot before using them in the report.",
+    "Missing small-wave candidates: P=11, Q=0, S=11, T=11. Do not treat missing markers as physiological absence."
+  ]
+}

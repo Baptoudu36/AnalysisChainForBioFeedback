@@ -1,0 +1,33 @@
+{
+  "source": "file",
+  "input_file": "/Users/baptisteaugros/Desktop/Master 2 - 2026 : 2027/Cours/Measurement and Analysis Chain for Biofeedback (DESPAUX)/A\u0300 rendre/ecg/data/run_20260916T104943Z_mcp3008/raw.csv",
+  "units": "V at ADC input",
+  "timestamp_kind": "monotonic midpoint of SPI transaction; software estimate",
+  "original_source": "mcp3008",
+  "target_fs_hz": 800.0,
+  "vref_v": 3.3,
+  "script_version": "2.0.0-merged",
+  "created_utc": "2026-10-16T21:33:04.279743+00:00",
+  "python": "3.14.6",
+  "numpy": "2.5.3",
+  "scipy": "1.18.1",
+  "options": {
+    "mode": "file",
+    "fs": 800,
+    "duration": 10,
+    "bpm": 72,
+    "channel": 1,
+    "vref": 3.3,
+    "input": "data/run_20260916T104943Z_mcp3008/raw.csv",
+    "units": "unknown input units",
+    "out": "data/reanalysis_v2",
+    "show": false,
+    "polarity": "auto",
+    "lowcut": 0.5,
+    "highcut": 40,
+    "min_hr": 35,
+    "max_hr": 180,
+    "r_prominence": null,
+    "plot_seconds": 10
+  }
+}

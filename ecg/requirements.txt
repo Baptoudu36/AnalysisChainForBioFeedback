@@ -1,0 +1,8 @@
+# Analysis (Pi and offline)
+numpy
+scipy
+matplotlib
+# Optional: wavelet P/Q/S/T delineation (falls back to SciPy local extrema if absent)
+neurokit2
+# Raspberry Pi only (mode mcp3008): pigpio Python client; start the daemon with `sudo pigpiod -s 1`
+pigpio

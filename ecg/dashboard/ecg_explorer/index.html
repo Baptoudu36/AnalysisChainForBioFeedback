@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#F3F6FA">
+  <meta name="description" content="Single-recording ECG analysis and beat review.">
+  <title>ECG Explorer · Biofeedback lab</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23215BCC'/%3E%3Cpath d='M5 33h12l5-9 7 19 7-27 6 17h17' fill='none' stroke='%23FFFFFF' stroke-width='4' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./jszip.min.js" defer></script>
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="brand-mark" aria-hidden="true">∿</span><div><strong>ECG Explorer</strong><small>UNIVERSITÉ DE MONTPELLIER · BIOFEEDBACK LAB</small></div></div>
+    <div class="privacy"><span class="privacy-dot"></span> Public site <span class="divider">/</span> Files are processed in this browser tab</div>
+  </header>
+  <main class="workspace">
+    <section class="workspace-heading">
+      <div><p class="eyebrow">SIGNAL REVIEW · <span id="data-kind">SYNTHETIC EXAMPLE</span></p><h1>Recording dashboard</h1></div>
+      <button class="quiet-button" id="reset-demo" type="button">Reset to example</button>
+    </section>
+
+    <section class="imports" aria-label="Load a recording">
+      <div class="import-card">
+        <div class="import-head"><div><strong id="recording-name">Synthetic example</strong><small id="recording-source">Illustrative data</small></div></div>
+        <div class="import-actions"><label class="file-button">Upload ZIP or files<input id="recording-files" type="file" multiple accept=".zip,.csv,.json,.npz"></label><label class="folder-button">Choose folder<input id="recording-folder" type="file" webkitdirectory multiple></label></div>
+        <p class="import-foot" id="import-summary"></p>
+      </div>
+      <div class="import-help">Upload one script output ZIP, its folder, or its data files. A raw file alone shows the acquired trace; include the analysis files for detected candidates and RR intervals.</div>
+      <div id="notice" class="notice" role="status" aria-live="polite" hidden></div>
+      <div id="render-status" class="notice" role="alert" hidden></div>
+    </section>
+
+    <section class="summary-grid" id="summary" aria-label="Run summary"></section>
+
+    <div id="warnings" class="analysis-warnings" role="note" hidden></div>
+
+    <section class="card trace-card">
+      <div class="card-head trace-head"><div><p class="eyebrow">TIME-ALIGNED INSPECTION</p><h2>Signal traces</h2></div><div class="legend" aria-label="Candidate marker legend"><span style="color:#7C3AED">● P</span><span style="color:#A65A00">● Q</span><span style="color:#1D4ED8">● R</span><span style="color:#007F70">● S</span><span style="color:#B42363">● T</span></div></div>
+      <div class="range-controls"><div class="range-label"><strong id="window-label">0.0–5.0 s</strong><span id="range-note">Drag the timeline or choose a beat</span></div><div class="range-controls-right"><label for="span-select">Window</label><select id="span-select"><option value="3">3 s</option><option value="5" selected>5 s</option><option value="10">10 s</option><option value="30">30 s</option></select></div></div>
+      <input id="time-slider" class="time-slider" type="range" min="0" max="1000" value="0" aria-label="Window start time">
+      <div class="trace-stack" id="chart-stack">
+        <div class="plot"><div class="plot-label"><strong>Raw signal</strong><span id="raw-units">amplitude</span></div><canvas id="raw-chart" aria-label="Raw ECG trace"></canvas></div>
+        <div class="plot"><div class="plot-label"><strong>Filtered &amp; oriented</strong><span id="filtered-units">amplitude</span></div><canvas id="filtered-chart" aria-label="Filtered ECG trace with labelled PQRST candidates"></canvas></div>
+        <div class="plot"><div class="plot-label"><strong>RR interval</strong><span>seconds · ending R time</span></div><canvas id="rr-chart" aria-label="RR intervals at ending R times"></canvas></div>
+      </div>
+      <p id="alignment-note" class="context-note"></p>
+    </section>
+
+    <div class="lower-grid">
+      <section class="card beats-card"><div class="card-head"><div><p class="eyebrow">CANDIDATE REVIEW</p><h2>Detected beats</h2></div><label class="toggle"><input id="suspicious-only" type="checkbox"> Review only</label></div><div class="beat-list-head"><span>BEAT</span><span>R TIME</span><span>RR BEFORE</span><span>REVIEW</span></div><div id="beat-list" class="beat-list" role="listbox" aria-label="Detected beats"></div></section>
+      <section class="card detail-card"><div class="card-head"><div><p class="eyebrow">SELECTED CANDIDATE</p><h2 id="detail-title">Beat detail</h2></div><button type="button" class="quiet-button" id="export-flags">Export review CSV</button></div><div id="beat-detail"></div></section>
+    </div>
+
+    <section class="card method-card"><div class="card-head"><div><p class="eyebrow">RUN CONTEXT</p><h2>Methods &amp; warnings</h2></div></div><div id="run-context" class="context-grid"></div></section>
+    <footer>Exploratory peak review for a course project. Candidate labels and RR checks are not clinical interpretations. Missing markers do not indicate physiological absence. Review notes are lost on reload unless exported.</footer>
+  </main>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a4ba2b089d16bb7e',t:'MTc5MjE4NjI2MQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

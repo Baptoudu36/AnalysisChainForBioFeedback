@@ -1,0 +1,9 @@
+{
+  "roi_norm": [0.0, 0.62, 1.0, 0.40],
+  "model_path": "contact_model.joblib",
+  "smooth_window": 5,
+  "min_flight_frames": 3,
+  "min_contact_frames": 3,
+  "min_confidence_margin": 0.15,
+  "expected_fps": 60.0
+}
