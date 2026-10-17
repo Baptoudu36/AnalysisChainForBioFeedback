@@ -1,133 +1,146 @@
-# From Sensor to Feedback — Raspberry Pi measurement chains for ECG and squat-jump analysis
+# From Sensor to Feedback — Raspberry Pi measurement chains for squat-jump and ECG analysis
 
-**Université de Montpellier · UFR STAPS**
-Master of Sciences in Engineering Ergonomics of Physical Activity
-Course: **Analysis Chain for Biofeedback**, taught by Gilles Despaux, 2026–2027
+**University of Montpellier · UFR STAPS**
+Master 2 of Sciences in Engineering Ergonomics of Physical Activity
+Course: **Analysis Chain for Biofeedback**, taught by Gilles Despaux, academic year 2026–2027
 
-**Students:** Baptiste Augros, Victor Salvat, Joël Singer
+**Students:** Baptiste Augros, Victor Salvat & Joël Singer
 
 ---
 
-This repository holds the two measurement-and-analysis chains we built on a **Raspberry Pi 3B+** during the practical sessions, along with their data, media, offline analyses and dashboards.
+This repository contains the two measurement-and-analysis chains we built together on a **Raspberry Pi 3B+** during the 5 practical sessions (and beyond). It includes the code that ran on the Pi, the data it produced, the media we recorded, the offline analyses and two dashboards.
 
-| | Project A: ECG | Project B: Squat jump |
+| | Project 1: Squat jump | Project 2: ECG |
 |---|---|---|
-| Sensor | 3 chest electrodes, analogue front-end | Raspberry Pi Camera V2.1 + push button (GPIO 17) |
-| Digitisation | MCP3008 10-bit ADC over SPI, 800 Hz | 640 × 480 video at 60 fps, per-frame timestamps |
-| Processing | 0.5–40 Hz band-pass, R-peak detection, RR and HR | Fixed ROI, linear SVM contact/flight classifier, event detection |
-| Indicators | Heart rate, RR intervals, PQRST candidates | Flight time, jump height, take-off velocity, mean force, power, W/kg |
-| Dashboard | **ECG Explorer** (V. Salvat) | **Squat Jump Explorer** (new) |
+| Sensors | Raspberry Pi Camera V2.1 + push button (GPIO 17) | 3 chest electrodes, analogue front-end |
+| Digitisation | 640 × 480 video at 60 fps, per-frame timestamps | MCP3008 10-bit ADC, sampling frequency 800 Hz |
+| Processing | Fixed ROI, linear SVM contact/flight classifier, event detection | 0.5–40 Hz band-pass, R-peak detection, RR and HR |
+| Indicators | Flight time, jump height, take-off velocity, mean force, power, W/kg | Heart rate, RR intervals, PQRST candidates |
+| Dashboard | **Squat Jump Explorer** (Baptiste) | **ECG Explorer** (Victor) |
 
-📄 **Full report:** [`report/Report_Analysis_Chain_for_Biofeedback.docx`](report/Report_Analysis_Chain_for_Biofeedback.docx)
+📄 **Full report:** [`Report/Report-AnalysisChainforBiofeedback.docx`](Report/Report-AnalysisChainforBiofeedback.docx) (Word, editable)
 
 ## Key results
 
-- **ECG, 16 Sep 2026 recording** (10 s, 800 Hz): 11 R peaks and a median heart rate of 73.1 bpm. 21 % of the raw signal power was 50 Hz mains interference, and a notch filter brought out the P–QRS–T waves.
-- **ECG, 6 Oct 2026 live demonstration** (DMA clock v2.0.0): the sampling grid was exactly 800.000 Hz, but the input was saturated near the 3.3 V rail. The software caught this and refused to output a heart rate.
-- **Squat jump, 20 hand-annotated trials** (same participant, 66 kg, 31 cm push-off): mean height 24.0 ± 2.5 cm and mean power 18.9 ± 1.8 W/kg. At 60 fps, one frame is about 1.8 cm of jump height.
-- **Automatic detector, leave-one-video-out validation:** both events were within ±1 frame in 10 of 20 unseen videos. One false jump was selected (jump_07).
+- **Squat jump, 20 hand-annotated trials** (same participant, 66 kg, 31 cm push-off): mean height 24.0 ± 2.5 cm and mean power 18.9 ± 1.8 W/kg. At 60 fps, one frame is worth about 1.8 cm of jump height.
+- **Automatic jump detector, leave-one-video-out validation:** both events were within ±1 frame in 10 of 20 unseen videos. In one video (jump_07) the wrong jump was selected.
+- **ECG, 16 Sep 2026 recording** (10 s, 800 Hz): 11 R peaks and a median heart rate of 73.1 bpm. 21 % of the raw signal power was 50 Hz mains interference; a notch filter brought out the P–QRS–T waves.
+- **ECG, 6 Oct 2026 live demonstration** (DMA clock, v2.0.0): the sampling grid was exactly 800.000 Hz, but the input was saturated near the 3.3 V rail. The software caught it and refused to output a heart rate.
 
 ## Repository map
 
 ```
 .
 ├── README.md
-├── ecg/                                   Project A
-│   ├── ecg_lab_merged.py                  acquisition + analysis v2.0.0 (demo | mcp3008 | file)
-│   ├── requirements.txt
-│   ├── legacy/ScriptECG.py                first version: UDP streaming (13 Sep)
-│   ├── data/
-│   │   ├── run_20260916T104943Z_mcp3008/              recording of 16 Sep (v1.2.0 outputs)
-│   │   └── run_20260916T104943Z_mcp3008_reanalysed_v2/ same raw file re-analysed with v2.0.0
-│   ├── analysis/ecg_signal_quality.py     timing, ADC use, spectrum, notch test, HRV → analysis/output/
-│   └── dashboard/ecg_explorer/            offline copy of ECG Explorer (open index.html)
-├── squat_jump_pi/                         Project B (folder copied as-is to the Pi Desktop)
-│   ├── main.py  detector.py  mechanics.py  report.py
-│   ├── record_tr_videos.py  train_contact_model.py
+├── requirements.txt                    everything needed for the offline analyses
+├── 1stProject-SquatJump/               Project 1 (copied as-is to the Pi Desktop)
+│   ├── main.py                         record a jump (button start/stop) and analyse it
+│   ├── detector.py                     contact/flight classifier + manual review window
+│   ├── mechanics.py                    flight time → height, velocity, force, power
+│   ├── report.py                       results.json / results.csv + annotated video
+│   ├── record_tr_videos.py             records the 5-s training videos
+│   ├── train_contact_model.py          trains contact_model.joblib from annotations.csv
 │   ├── config.json  contact_model.joblib  requirements.txt  README.md
-│   ├── training_dataset/jump_01…20.mp4    20 training videos (5 s, 60 fps)
-│   ├── annotations.csv  annotations/      168 hand labels + photos of the lab notebook
-│   ├── analysis/                          reference metrics, LOVO validation, dataset overview → analysis/output/
-│   └── dashboard/jump_dashboard.html      Squat Jump Explorer (single offline file)
-├── media/
-│   ├── ecg/IMG_7062.MOV                   electrode placement and bench (23 Sep)
-│   ├── squat_jump/                        camera set-up and recording session videos
-│   └── demo_recordings/                   screen recordings of the ECG (6 Oct) and jump (14 Oct) demos
-└── report/                                report (.docx), figures and the scripts that build them
+│   ├── training_dataset/               20 training videos (jump_01 … jump_20)
+│   ├── annotations.csv                 168 hand-labelled frames (CONTACT / FLIGHT)
+│   ├── annotations/                    photos of the lab-notebook annotations
+│   ├── analysis/                       reference metrics, LOVO validation, dataset overview
+│   │   └── output/                     CSV / JSON results used in the report
+│   └── dashboard/
+│       ├── jump_dashboard.html         Squat Jump Explorer (single offline file)
+│       ├── template.html  build_dashboard.py   rebuild the dashboard from analysis/output
+│       └── example_session_20261014_results.json   14 Oct demo session (to load in the dashboard)
+├── 2ndProject-ECGAnalyzer/             Project 2
+│   ├── ecg_lab_merged.py               acquisition + analysis v2.0.0 (modes: demo | mcp3008 | file)
+│   ├── legacy/ScriptECG.py             first version: UDP streaming (13 Sep)
+│   ├── requirements.txt
+│   ├── data/run_20260916T104943Z_mcp3008/   recording of 16 Sep (raw + analysis files)
+│   ├── analysis/ecg_signal_quality.py  timing, ADC use, spectrum, notch test, HRV
+│   │   └── output/quality_metrics.json
+│   └── dashboard/ecg_explorer/         offline copy of ECG Explorer
+├── MediaSources/
+│   ├── SquatJump videos/               Video 1 (recording session), Video 2 (camera set-up, 960×540 copy)
+│   ├── ECG/                            electrode placement and bench (23 Sep)
+│   └── Demo recordings/                screen recordings of the ECG (6 Oct) and squat-jump (14 Oct) runs on the Pi
+└── Report/
+    ├── Report-AnalysisChainforBiofeedback.docx   final group report
+    └── Figures of the final report/    every figure and photo used in the report
 ```
 
 ## Running the code
 
 ### On the Raspberry Pi
 
-**ECG** (MCP3008 on SPI, channel 1):
+**Squat jump** (camera + button on GPIO 17). Installation details are in [`1stProject-SquatJump/README.md`](1stProject-SquatJump/README.md).
+
+```bash
+cd 1stProject-SquatJump && python3 main.py --once
+```
+
+**ECG** (MCP3008 on SPI, channel 1). Start the pigpio daemon first:
 
 ```bash
 sudo pigpiod -s 1
 ```
 
 ```bash
-python3 ecg/ecg_lab_merged.py --mode mcp3008 --channel 1 --vref 3.3 --fs 800 --duration 30 --show
-```
-
-**Squat jump** (camera + button on GPIO 17). See [`squat_jump_pi/README.md`](squat_jump_pi/README.md) for installation.
-
-```bash
-cd squat_jump_pi && python3 main.py --once
+cd 2ndProject-ECGAnalyzer && python3 ecg_lab_merged.py --mode mcp3008 --channel 1 --vref 3.3 --fs 800 --duration 30 --show
 ```
 
 ### Offline (any computer)
 
-You need Python 3 with `numpy scipy matplotlib opencv-python scikit-learn joblib`.
+```bash
+pip install -r requirements.txt
+```
+
+Re-run the squat-jump analysis. The full run re-trains 20 models and takes about 10 minutes; add `--figures-only` to redraw the figures from the saved results:
 
 ```bash
-python3 ecg/ecg_lab_merged.py --mode demo --show
+cd 1stProject-SquatJump && python3 analysis/jump_dataset_analysis.py
 ```
 
 ```bash
-python3 ecg/ecg_lab_merged.py --mode file --input ecg/data/run_20260916T104943Z_mcp3008/raw.csv
+cd 1stProject-SquatJump && python3 analysis/dataset_overview.py && python3 dashboard/build_dashboard.py
+```
+
+Re-analyse the ECG recording and compute its signal-quality figures:
+
+```bash
+cd 2ndProject-ECGAnalyzer && python3 ecg_lab_merged.py --mode file --input data/run_20260916T104943Z_mcp3008/raw.csv
 ```
 
 ```bash
-python3 ecg/analysis/ecg_signal_quality.py ecg/data/run_20260916T104943Z_mcp3008 --out ecg/analysis/output
+cd 2ndProject-ECGAnalyzer && python3 analysis/ecg_signal_quality.py data/run_20260916T104943Z_mcp3008 --out analysis/output
 ```
 
-```bash
-python3 squat_jump_pi/analysis/jump_dataset_analysis.py
-```
+Try the ECG pipeline on a synthetic signal:
 
 ```bash
-python3 squat_jump_pi/dashboard/build_dashboard.py
+cd 2ndProject-ECGAnalyzer && python3 ecg_lab_merged.py --mode demo --show
 ```
+
+The analysis scripts write their CSV/JSON results to `analysis/output/` and their figures directly to `Report/Figures of the final report/`.
 
 ### Dashboards
 
-- **Squat Jump Explorer:** open `squat_jump_pi/dashboard/jump_dashboard.html` in a browser. Everything is embedded, so it works without internet access. You can load a `results.json` from a Pi session to compare it with the reference set.
-- **ECG Explorer:** online at <https://victor-ecg-explorer.hoi987.chatgpt.site>, or offline in `ecg/dashboard/ecg_explorer/`. To use the offline copy, serve the folder (`python3 -m http.server` inside it) and open `http://localhost:8000`. Then load an output folder, or a ZIP of one, such as `ecg/data/run_20260916T104943Z_mcp3008/`.
-
-### Rebuilding the report
-
-```bash
-cd report/build && npm install && node build_report.js
-```
-
-All numbers in the report are read from the analysis outputs; the cover logo is `report/assets/logo_um.jpg`.
+- **Squat Jump Explorer:** open `1stProject-SquatJump/dashboard/jump_dashboard.html` in a browser. Everything is embedded, so it works without internet access. You can change body mass and push-off distance, or load a `results.json` from a Pi session (e.g. `example_session_20261014_results.json`) to compare it with the 20 reference jumps.
+- **ECG Explorer:** online at <https://victor-ecg-explorer.hoi987.chatgpt.site>, or offline in `2ndProject-ECGAnalyzer/dashboard/ecg_explorer/`. For the offline copy, run `python3 -m http.server` inside that folder and open `http://localhost:8000`. Then load an output folder, or a ZIP of one, such as `2ndProject-ECGAnalyzer/data/run_20260916T104943Z_mcp3008/`.
 
 ## What is not in the repository
 
-- **Other ECG runs:** 14 ECG run folders (16 Sep, 29 Sep, 6 Oct) and 8 squat-jump session folders (`jump_data/`) stayed on the Raspberry Pi. Only the 16 Sep ECG recording was exported. The 6 Oct ECG and 14 Oct jump demonstrations are documented through their screen recordings in `media/demo_recordings/`.
-- **`ecg_lab` v1.2.0 source:** the version that produced the 16 Sep recording was superseded by `ecg_lab_merged.py` v2.0.0. Its output files are fully compatible and were re-analysed with v2.0.0.
-- **`media/squat_jump/IMG_7204.MOV`** (116 MB) is over GitHub's 100 MB limit, so a 960 × 540 copy (`IMG_7204_960x540.mp4`) is committed instead.
-- **ECG front-end model:** the reference of the analogue ECG front-end board is not recorded in the project files.
+- **Other Pi sessions:** 8 squat-jump session folders (`jump_data/`) and 14 ECG run folders (16 Sep, 29 Sep, 6 Oct) stayed on the Raspberry Pi. Only the 16 Sep ECG recording was exported. The 14 Oct jump run and the 6 Oct ECG run are documented through their screen recordings in `MediaSources/Demo recordings/`.
+- **`ecg_lab` v1.2.0 source:** the version that produced the 16 Sep recording was later replaced by `ecg_lab_merged.py` v2.0.0. Its output files are compatible: re-analysing the raw file with v2.0.0 gives the same 11 R peaks and 73.1 bpm.
+- **Original of `Video 2`:** the 116 MB `.MOV` is over GitHub's 100 MB limit, so only a 960 × 540 copy without sound is kept.
+- **ECG front-end model:** the reference of the analogue ECG front-end board was not written down during the sessions.
 
-## Contributions and use of AI
+## Contributions and use of AI tools
 
 This was a group project to which all three members contributed equally:
 
 - **Victor Salvat** built the ECG Explorer dashboard.
 - **Joël Singer** mainly wrote the squat-jump scripts.
-- **Baptiste Augros** designed the ECG acquisition script, ensured the synthesis and integration of both projects and wrote the report.
+- **Baptiste Augros** designed the ECG acquisition script, wrote the basis of the final report, handled the synthesis and integration of both projects, and manages the GitHub repository.
 
-Parts of the code were drafted with AI assistants, then reviewed, tested on the Pi and integrated by the group. The offline analyses, Squat Jump Explorer and the report were also prepared with AI assistance from the group's own data.
+Parts of the code were drafted with the help of AI assistants, then reviewed, tested on the Pi and integrated by the group. The offline analyses and the Squat Jump Explorer were also prepared with AI assistance, from the group's own data.
 
 *Exploratory course project: not a validated measurement or clinical instrument.*

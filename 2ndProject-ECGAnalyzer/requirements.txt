@@ -1,0 +1,13 @@
+# ECG project (acquisition on the Raspberry Pi + offline analysis)
+
+numpy>=1.24
+scipy>=1.10
+matplotlib>=3.7
+
+# Optional: wavelet P/Q/S/T delineation; without it the script falls back to
+# SciPy local extrema (as in the recordings shown in the report)
+neurokit2>=0.2
+
+# Raspberry Pi only (--mode mcp3008): pigpio client. Start the daemon first:
+#   sudo pigpiod -s 1
+pigpio>=1.78

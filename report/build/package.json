@@ -1,7 +1,0 @@
-{
-  "name": "biofeedback-report-builder",
-  "private": true,
-  "description": "Builds report/Report_Analysis_Chain_for_Biofeedback.docx from the analysis outputs",
-  "scripts": { "build": "node build_report.js" },
-  "dependencies": { "docx": "^9.12.0" }
-}

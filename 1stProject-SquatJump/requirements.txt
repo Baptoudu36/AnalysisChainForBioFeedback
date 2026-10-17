@@ -1,0 +1,16 @@
+# Squat-jump project (Raspberry Pi program + offline analysis)
+#
+# On the Raspberry Pi, install the camera stack with apt first (not pip):
+#   sudo apt install -y python3-picamera2 python3-opencv ffmpeg python3-gpiozero mkvtoolnix
+# then create the venv with --system-site-packages so Picamera2 stays visible
+# (see README.md). If pip's opencv-python conflicts with python3-opencv on the
+# Pi, remove the opencv-python line below.
+
+numpy>=1.24
+opencv-python>=4.8
+scikit-learn>=1.3
+joblib>=1.3
+gpiozero>=2.0          # Pi only (start/stop push button on GPIO 17)
+
+# Offline analysis and report figures (analysis/, dashboard/)
+matplotlib>=3.7

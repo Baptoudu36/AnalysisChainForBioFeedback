@@ -10,14 +10,9 @@ __pycache__/
 .venv/
 venv/
 
-# Node (report builder)
-report/build/node_modules/
-report/build/package-lock.json
 
 # Pi run outputs created when the programs are executed
 jump_data/
 results/
 tmp/
 
-# Over GitHub's 100 MB per-file limit: a 960x540 copy (IMG_7204_960x540.mp4) is committed instead
-media/squat_jump/IMG_7204.MOV
