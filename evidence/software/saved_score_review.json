@@ -1,0 +1,265 @@
+{
+  "method": "Replay retained, rounded (4 decimal places) held-out scores through old/current selection code using a model/capture adapter. No model loading, training, new video feature computation or human acceptance. All event pairs agree with stored baseline.",
+  "rows": [
+    {
+      "trial": "jump_01",
+      "previous_events": [
+        75,
+        101
+      ],
+      "current_proposal": [
+        75,
+        101
+      ],
+      "review_status": "pending",
+      "event_score_margin": 2.3866615384615386
+    },
+    {
+      "trial": "jump_02",
+      "previous_events": [
+        159,
+        187
+      ],
+      "current_proposal": [
+        159,
+        187
+      ],
+      "review_status": "pending",
+      "event_score_margin": 2.5498914285714283
+    },
+    {
+      "trial": "jump_03",
+      "previous_events": [
+        117,
+        151
+      ],
+      "current_proposal": [
+        117,
+        151
+      ],
+      "review_status": "pending",
+      "event_score_margin": 0.5761812500000001
+    },
+    {
+      "trial": "jump_04",
+      "previous_events": [
+        97,
+        124
+      ],
+      "current_proposal": [
+        97,
+        124
+      ],
+      "review_status": "pending",
+      "event_score_margin": 2.178361690140845
+    },
+    {
+      "trial": "jump_05",
+      "previous_events": [
+        125,
+        154
+      ],
+      "current_proposal": [
+        125,
+        154
+      ],
+      "review_status": "pending",
+      "event_score_margin": 3.1390911764705884
+    },
+    {
+      "trial": "jump_06",
+      "previous_events": [
+        123,
+        148
+      ],
+      "current_proposal": [
+        123,
+        148
+      ],
+      "review_status": "pending",
+      "event_score_margin": 2.974322264150943
+    },
+    {
+      "trial": "jump_07",
+      "previous_events": [
+        227,
+        267
+      ],
+      "current_proposal": [
+        227,
+        267
+      ],
+      "review_status": "pending",
+      "event_score_margin": 0.3162666666666667
+    },
+    {
+      "trial": "jump_08",
+      "previous_events": [
+        124,
+        156
+      ],
+      "current_proposal": [
+        124,
+        156
+      ],
+      "review_status": "pending",
+      "event_score_margin": 0.6742872727272727
+    },
+    {
+      "trial": "jump_09",
+      "previous_events": [
+        126,
+        157
+      ],
+      "current_proposal": [
+        126,
+        157
+      ],
+      "review_status": "pending",
+      "event_score_margin": 1.1468434090909092
+    },
+    {
+      "trial": "jump_10",
+      "previous_events": [
+        119,
+        146
+      ],
+      "current_proposal": [
+        119,
+        146
+      ],
+      "review_status": "pending",
+      "event_score_margin": 1.6907644444444443
+    },
+    {
+      "trial": "jump_11",
+      "previous_events": [
+        148,
+        178
+      ],
+      "current_proposal": [
+        148,
+        178
+      ],
+      "review_status": "pending",
+      "event_score_margin": 1.8370205714285714
+    },
+    {
+      "trial": "jump_12",
+      "previous_events": [
+        173,
+        199
+      ],
+      "current_proposal": [
+        173,
+        199
+      ],
+      "review_status": "pending",
+      "event_score_margin": 2.892895384615384
+    },
+    {
+      "trial": "jump_13",
+      "previous_events": [
+        182,
+        207
+      ],
+      "current_proposal": [
+        182,
+        207
+      ],
+      "review_status": "pending",
+      "event_score_margin": 1.4454544
+    },
+    {
+      "trial": "jump_14",
+      "previous_events": [
+        136,
+        159
+      ],
+      "current_proposal": [
+        136,
+        159
+      ],
+      "review_status": "pending",
+      "event_score_margin": 1.8948530434782611
+    },
+    {
+      "trial": "jump_15",
+      "previous_events": [
+        160,
+        189
+      ],
+      "current_proposal": [
+        160,
+        189
+      ],
+      "review_status": "pending",
+      "event_score_margin": 0.8806903333333336
+    },
+    {
+      "trial": "jump_16",
+      "previous_events": [
+        150,
+        173
+      ],
+      "current_proposal": [
+        150,
+        173
+      ],
+      "review_status": "pending",
+      "event_score_margin": 1.3870921739130435
+    },
+    {
+      "trial": "jump_17",
+      "previous_events": [
+        99,
+        127
+      ],
+      "current_proposal": [
+        99,
+        127
+      ],
+      "review_status": "pending",
+      "event_score_margin": 1.0944271428571428
+    },
+    {
+      "trial": "jump_18",
+      "previous_events": [
+        167,
+        192
+      ],
+      "current_proposal": [
+        167,
+        192
+      ],
+      "review_status": "pending",
+      "event_score_margin": 0.710968
+    },
+    {
+      "trial": "jump_19",
+      "previous_events": [
+        145,
+        171
+      ],
+      "current_proposal": [
+        145,
+        171
+      ],
+      "review_status": "pending",
+      "event_score_margin": 1.1049807692307692
+    },
+    {
+      "trial": "jump_20",
+      "previous_events": [
+        207,
+        219
+      ],
+      "current_proposal": [
+        207,
+        219
+      ],
+      "review_status": "pending",
+      "event_score_margin": 0.18839000000000003
+    }
+  ]
+}

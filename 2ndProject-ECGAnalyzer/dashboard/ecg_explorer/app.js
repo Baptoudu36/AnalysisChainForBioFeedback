@@ -2,10 +2,10 @@ const $ = id => document.getElementById(id);
 const state = {recording:null, selected:null, start:0, span:5, flags:new Map(), importSeq:0};
 const COLORS = {signal:'#243B53', raw:'#526478', grid:'#D6DFE9', text:'#536477'};
 const WAVES = {P:'#7C3AED', Q:'#A65A00', R:'#1D4ED8', S:'#007F70', T:'#B42363'};
-const finite = x => Number.isFinite(Number(x)) ? Number(x) : null;
+const finite = x => x!==null && x!==undefined && x!=='' && Number.isFinite(Number(x)) ? Number(x) : null;
 const fmt = (x,d=2) => Number.isFinite(x) ? x.toFixed(d) : '—';
 const esc = s => String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const label = run => run.analysis?.script_version || run.metadata?.script_version || run.label || 'unknown version';
+const label = run => run.analysis?.script_version || run.metadata?.script_version || (run.sample ? run.label : null) || 'unknown version';
 const runId = run => run.metadata?.created_utc || run.importName || 'unspecified recording';
 const simulated = run => run.sample || run.metadata?.source==='demo' || run.metadata?.original_source==='demo';
 function sample(){
@@ -41,7 +41,7 @@ function numeric(x) {
 }
 function signalRows(rows,timeCol,valueCol) {
   const t=[],y=[],adc=[];
-  for(const row of rows) { const a=numeric(row[timeCol]),b=numeric(row[valueCol]); if(a===null||b===null) continue; t.push(a); y.push(b); if("raw_adc" in row) adc.push(numeric(row.raw_adc)); }
+  for(const row of rows) { const a=numeric(row[timeCol]),b=numeric(row[valueCol]); if(a===null||b===null) throw new Error("Signal contains missing or non-finite samples; no rows were silently removed."); t.push(a); y.push(b); if("raw_adc" in row) adc.push(numeric(row.raw_adc)); }
   if(t.length<2 || t.some((v,i)=>i>0&&v<=t[i-1])) throw new Error("Signal timestamps must increase and contain at least two valid samples.");
   return {t,y,...(adc.length?{adc}:{})};
 }
@@ -51,8 +51,11 @@ function beatRows(rows) {
     .filter(b=>b.r!==null).sort((a,b)=>a.r-b.r);
 }
 function rrRows(rows) {
-  return rows.map(row=>({end:numeric(row.R_time_s),rr:numeric(row.RR_s),bpm:numeric(row.instantaneous_bpm),
-    accepted:numeric(row.in_configured_range)===1})).filter(x=>x.end!==null && x.rr!==null).sort((a,b)=>a.end-b.end);
+  return rows.map(row=>{
+    const end=numeric(row.R_time_s),rr=numeric(row.RR_s),bpm=numeric(row.instantaneous_bpm);
+    if(end===null || rr===null || rr<=0 || (bpm!==null && bpm<=0))throw new Error("RR rows need finite times and positive intervals/HR.");
+    return {end,rr,bpm,accepted:numeric(row.in_configured_range)===null?null:numeric(row.in_configured_range)===1};
+  }).sort((a,b)=>a.end-b.end);
 }
 function readNpy(bytes) {
   const dv=new DataView(bytes.buffer,bytes.byteOffset,bytes.byteLength);
@@ -146,7 +149,11 @@ async function loadRun(input) {
   const run={label:"Imported run",source:"Local files",importName:expanded.importName,raw:null,filtered:null,beats:[],rr:[],metadata:{},analysis:{},files:[...picked.keys()],sample:false};
   const read=async name=>picked.has(name)?await picked.get(name).text():null;
   for(const name of ["metadata.json","analysis.json"]){
-    const content=await read(name); if(content) run[name.split(".")[0]]=JSON.parse(content);
+    const content=await read(name); if(content) {
+      const value=JSON.parse(content);
+      if(!value || typeof value!=="object" || Array.isArray(value))throw new Error(name+" must contain an object.");
+      run[name.split(".")[0]]=value;
+    }
   }
   if(picked.has("raw.csv")) run.raw=signalRows(parseCSV(await read("raw.csv"),["time_s","raw_signal"]),"time_s","raw_signal");
   else if(picked.has("raw.npz")) run.raw=await readNPZ(picked.get("raw.npz"));
@@ -200,7 +207,7 @@ function renderContext(){
  $('raw-units').textContent=m.units||'units not supplied';$('filtered-units').textContent=m.units||'units not supplied';
  $('alignment-note').textContent='Shared time window. Select a beat or click near an R marker. Missing labels mean no candidate was supplied.';
  $('run-context').innerHTML='<div class="context-run"><dl>'+[
- ['Recording ID',runId(r)],['Source',m.source||r.source],['Script version',label(r)],['Units',m.units||'not supplied'],['ADC channel',m.channel??'—'],['Polarity',a.polarity_multiplier??'not supplied'],['Filter',a.filter_hz?a.filter_hz.join('–')+' Hz':'not supplied'],['R threshold',a.r_threshold_mode||'not supplied'],['Prominence',fmt(a.r_prominence_threshold,5)],['RR accepted',a.accepted_rr_intervals??'—'],['RR excluded',a.excluded_rr_intervals??'—'],['Files',r.files.join(', ')]
+ ['Recording ID',runId(r)],['Source',m.source||r.source],['Processing version',label(r)],['Acquisition version',m.original_script_version||(m.source==='file'?'not retained in replay metadata':m.script_version)||'not supplied'],['Candidate backend',a.delineation_method||a.pqrst_backend||a.delineation_backend||'not supplied'],['Timestamp kind',m.timestamp_kind||'not supplied'],['Units',m.units||'not supplied'],['ADC channel',m.channel??'—'],['Polarity',a.polarity_multiplier??'not supplied'],['Filter',a.filter_hz?a.filter_hz.join('–')+' Hz':'not supplied'],['R threshold',a.r_threshold_mode||'not supplied'],['Prominence',fmt(a.r_prominence_threshold,5)],['RR accepted',a.accepted_rr_intervals??'—'],['RR excluded',a.excluded_rr_intervals??'—'],['Files',r.files.join(', ')]
  ].map(([k,v])=>'<dt>'+esc(k)+'</dt><dd>'+esc(v)+'</dd>').join('')+'</dl><details class="json-details"><summary>Full metadata &amp; analysis</summary><pre>'+esc(JSON.stringify({metadata:m,analysis:a},null,2))+'</pre></details></div>';
 }
 function render(){
@@ -263,6 +270,7 @@ function plotRR(){
  const g=canvasSetup($('rr-chart')),lo=state.start,hi=lo+state.span,p=state.recording.rr.filter(x=>x.end>=lo&&x.end<=hi),values=p.map(x=>x.rr);
  let min=values.length?Math.min(...values):.6,max=values.length?Math.max(...values):1;const pad=Math.max(.03,(max-min)*.3);min=Math.max(0,min-pad);max+=pad;axis(g,lo,hi,min,max);
  const ctx=g.ctx;ctx.strokeStyle=COLORS.signal;ctx.lineWidth=1.4;ctx.beginPath();
+ if(!p.length){ctx.fillStyle=COLORS.text;ctx.textAlign='left';ctx.fillText('RR unavailable in this window',g.left+10,g.top+25);}
  p.forEach((v,i)=>{const x=g.left+(v.end-lo)/(hi-lo)*(g.right-g.left),y=g.bottom-(v.rr-min)/(max-min)*(g.bottom-g.top);i?ctx.lineTo(x,y):ctx.moveTo(x,y);});ctx.stroke();
  for(const v of p){const x=g.left+(v.end-lo)/(hi-lo)*(g.right-g.left),y=g.bottom-(v.rr-min)/(max-min)*(g.bottom-g.top);ctx.fillStyle=v.accepted===false?'#A65A00':COLORS.signal;ctx.beginPath();ctx.arc(x,y,3.5,0,Math.PI*2);ctx.fill();}
 }

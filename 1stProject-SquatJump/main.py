@@ -18,12 +18,7 @@ from pathlib import Path
 
 import cv2
 import numpy as np
-from gpiozero import Button
-from picamera2 import Picamera2
-from picamera2.encoders import H264Encoder
-from picamera2.outputs import FileOutput
-
-from detector import detect_events, load_config, select_manual_events
+from detector import detect_events, load_config, review_events
 from mechanics import calculate_metrics
 from report import write_report, make_annotated_video
 
@@ -93,6 +88,8 @@ def remux_h264(h264_path, mp4_path):
 
 
 def record_one(picam2, button, output_dir, config):
+    from picamera2.encoders import H264Encoder
+    from picamera2.outputs import FileOutput
     stamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     session = output_dir / f"jump_{stamp}"
     session.mkdir(parents=True, exist_ok=False)
@@ -132,21 +129,18 @@ def record_one(picam2, button, output_dir, config):
 
 def run_analysis(video_path, timestamp_path, session, mass_kg, push_cm, config):
     print("Analysing video...")
-    result = detect_events(str(video_path), str(timestamp_path), config)
+    proposal = detect_events(str(video_path), str(timestamp_path), config)
+    # Persist the proposal before opening the UI, including unavailable/cancelled review.
+    result = {"ok": False, "analysis_status": "REVIEW_REQUIRED", "review_status": "pending",
+              "automatic_proposal": proposal, "body_mass_kg": mass_kg, "push_off_distance_cm": push_cm}
+    write_report(session, result, None)
+    print("Opening manual event review. Inspect the proposed frames, correct if needed, then accept.")
+    result = review_events(str(video_path), str(timestamp_path), config, proposal)
+    result.update(body_mass_kg=mass_kg, push_off_distance_cm=push_cm)
     if not result.get("ok"):
-        print("Automatic event detection did not produce a confident result.")
-        print(result.get("message", "No further details."))
-        print("Opening manual event review. Select take-off and landing, then accept.")
-        manual_result = select_manual_events(str(video_path), str(timestamp_path), config)
-        if not manual_result.get("ok"):
-            result["body_mass_kg"] = mass_kg
-            result["push_off_distance_cm"] = push_cm
-            result["analysis_status"] = "EVENT_DETECTION_FAILED"
-            write_report(session, result, None)
-            print(manual_result.get("message", "Manual event selection failed."))
-            print(f"Review files in: {session}")
-            return
-        result = manual_result
+        write_report(session, result, None)
+        print(result.get("review_message", "Review required; no accepted mechanical result."))
+        return
 
     metrics = calculate_metrics(
         flight_time_s=result["flight_time_s"],
@@ -156,14 +150,10 @@ def run_analysis(video_path, timestamp_path, session, mass_kg, push_cm, config):
     result.update(metrics)
     result["body_mass_kg"] = mass_kg
     result["push_off_distance_cm"] = push_cm
-    result["analysis_status"] = (
-        "OK_WITH_MANUAL_EVENTS" if result.get("detection_method") == "manual"
-        else "OK_WITH_REVIEW_REQUIRED"
-    )
     annotated = session / "annotated_review.mp4"
     make_annotated_video(str(video_path), annotated, result)
     write_report(session, result, annotated)
-    print("\n=== AUTOMATIC RESULT (review the event frames) ===")
+    print("\n=== RESULT WITH EXPLICITLY REVIEWED EVENTS ===")
     for key, label, unit in [
         ("flight_time_s", "Flight time", "s"),
         ("jump_height_m", "Jump height", "m"),
@@ -180,6 +170,8 @@ def run_analysis(video_path, timestamp_path, session, mass_kg, push_cm, config):
 
 
 def main():
+    from gpiozero import Button
+    from picamera2 import Picamera2
     parser = argparse.ArgumentParser()
     parser.add_argument("--output", default="jump_data", help="Output folder")
     parser.add_argument("--config", default="config.json", help="Detector config JSON")

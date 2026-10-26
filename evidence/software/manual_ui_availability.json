@@ -1,0 +1,12 @@
+{
+  "ok": false,
+  "analysis_status": "REVIEW_REQUIRED",
+  "review_status": "pending",
+  "automatic_proposal": {
+    "ok": true,
+    "takeoff_frame_index": 227,
+    "landing_frame_index": 267,
+    "frames_decoded": 291
+  },
+  "review_message": "Manual review UI unavailable: OpenCV(4.11.0) D:\\a\\opencv-python\\opencv-python\\opencv\\modules\\highgui\\src\\window.cpp:1284: error: (-2:Unspecified error) The function is not implemented. Rebuild the library with Windows, GTK+ 2.x or Cocoa support. If you are on Ubuntu or Debian, install libgtk2.0-dev and pkg-config, then re-run cmake or configure script in function 'cvNamedWindow'\n"
+}
