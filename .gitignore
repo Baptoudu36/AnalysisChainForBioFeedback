@@ -12,7 +12,49 @@ venv/
 
 
 # Pi run outputs created when the programs are executed
-jump_data/
+/1stProject-SquatJump/jump_data/*
 results/
 tmp/
 
+
+# Retained original session deliveries only
+!/1stProject-SquatJump/jump_data/jump_20261014_035847/
+!/1stProject-SquatJump/jump_data/jump_20261014_044047/
+!/1stProject-SquatJump/jump_data/jump_20261014_044853/
+!/1stProject-SquatJump/jump_data/jump_20261014_045210/
+!/1stProject-SquatJump/jump_data/jump_20261014_051434/
+!/1stProject-SquatJump/jump_data/jump_20261014_052005/
+!/1stProject-SquatJump/jump_data/jump_20261014_052459/
+
+# Local execution, private course material and distribution archives
+.e/
+.env
+.env.*
+!.env.example
+env/
+__pypackages__/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.cache/
+mplconfig/
+outputs/
+validation/
+_codex/
+_GPT/
+backups/
+backup/
+wheelhouse/
+wheels/
+node_modules/
+submission/
+*.zip
+*.zip.sha256
+*.whl
+*.log
+*.bak
+~$*
+id.txt
+credentials*
+*.pem
+*.key

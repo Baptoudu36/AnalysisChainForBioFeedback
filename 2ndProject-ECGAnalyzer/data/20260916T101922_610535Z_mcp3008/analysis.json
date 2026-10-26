@@ -1,0 +1,31 @@
+{
+  "timing": {
+    "samples": 8000,
+    "recorded_span_s": 9.998586949500123,
+    "measured_average_fs_hz": 800.0130458834394,
+    "median_interval_ms": 1.2500519999321114,
+    "interval_p95_jitter_fraction": 0.024519820028809897,
+    "maximum_interval_ms": 1.419582999915292
+  },
+  "r_candidates": 0,
+  "accepted_rr_intervals": 0,
+  "excluded_rr_intervals": 0,
+  "median_hr_bpm": null,
+  "mean_instantaneous_hr_bpm": null,
+  "polarity_multiplier": 1,
+  "noise_estimate": 0.04562828523698081,
+  "method": "0.5\u201340 Hz default bandpass; prominence R peaks; local-extrema P/Q/S/T candidates",
+  "filter_hz": [
+    0.5,
+    40
+  ],
+  "hr_search_bpm": [
+    35,
+    180
+  ],
+  "warnings": [
+    "PQRST are exploratory peak candidates; inspect the plot before using them in the report.",
+    "Signal has insufficient amplitude relative to noise for this detector.",
+    "Fewer than three RR intervals: the rate estimate is especially uncertain."
+  ]
+}
