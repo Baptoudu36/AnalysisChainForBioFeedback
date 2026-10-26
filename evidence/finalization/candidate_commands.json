@@ -1,0 +1,54 @@
+[
+  {
+    "argv": [
+      "python",
+      "2ndProject-ECGAnalyzer/ecg_lab_merged.py",
+      "--mode",
+      "file",
+      "--input",
+      "2ndProject-ECGAnalyzer/data/run_20260916T104943Z_mcp3008/raw.csv",
+      "--out",
+      "outputs/ecg_replay"
+    ],
+    "cwd": "submission/candidate",
+    "exit_code": 0
+  },
+  {
+    "argv": [
+      "python",
+      "2ndProject-ECGAnalyzer/analysis/ecg_signal_quality.py",
+      "2ndProject-ECGAnalyzer/data/run_20260916T104943Z_mcp3008",
+      "--out",
+      "outputs/quality",
+      "--fig-dir",
+      "outputs/quality_figures"
+    ],
+    "cwd": "submission/candidate",
+    "exit_code": 0
+  },
+  {
+    "argv": [
+      "python",
+      "2ndProject-ECGAnalyzer/analysis/ecg_signal_quality.py",
+      "2ndProject-ECGAnalyzer/data/20260916T101922_610535Z_mcp3008",
+      "--out",
+      "outputs/quality_no_rr",
+      "--fig-dir",
+      "outputs/quality_no_rr_figures"
+    ],
+    "cwd": "submission/candidate",
+    "exit_code": 0
+  },
+  {
+    "argv": [
+      "python",
+      "tools/review_jump.py",
+      "--help"
+    ],
+    "cwd": "submission/candidate",
+    "exit_code": 0
+  },
+  {
+    "strict_json_outputs": true
+  }
+]

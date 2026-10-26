@@ -1,5 +1,7 @@
 # Raspberry Pi squat-jump recorder and analysis prototype
 
+The historical SquatJump project name is retained. Victor identifies the twenty training trials as CMJs by Joël, hands on hips. The current branch requires explicit review of every automatic proposal. Seven original session exports are documented in [JUMP_SESSIONS.md](../docs/JUMP_SESSIONS.md). Corrected code has not been retested on Raspberry Pi; use the [root instructions](../README.md) for offline work.
+
 This is a **research prototype**, not a validated measurement instrument. The camera is front-facing, so the lower ROI must show both feet and the ground line throughout the movement. Very poor lighting, occlusion, and camera framing can make event detection fail. Always visually check `annotated_review.mp4` before accepting a result.
 
 ## Hardware
@@ -61,7 +63,8 @@ The event detector requires `contact_model.joblib`. The model included here was 
 4. Train:
 
 ```bash
-python3 train_contact_model.py annotations.csv --config config.json --out contact_model.joblib
+mkdir -p outputs
+python3 train_contact_model.py annotations.csv --config config.json --out outputs/contact_model_candidate.joblib
 ```
 
 The included model is a basic linear SVM over normalized grayscale ROI pixels with modest brightness augmentation. It is a baseline only; it is not guaranteed to be robust in poor lighting. For 20 videos, split evaluation by whole video, not by randomly splitting adjacent frames. Do not report training accuracy as generalisation performance.
@@ -81,7 +84,7 @@ The annotated video marks the detected frame indices. It is a quality-control ai
 
 ## Manual event review
 
-If automatic detection fails or its score margin is below the configured threshold, a manual review window opens before the mechanical calculations are run. Drag the `Frame` trackbar to any frame, or use `n`/Right Arrow and `p`/Left Arrow for frame-by-frame review. Click `TAKE-OFF` on the first frame where neither foot touches the ground, then click `LANDING` on the first frame where either foot touches the ground again. Click `ACCEPT` to calculate and report the result, or `CANCEL`/Escape to leave the analysis failed. The output records `detection_method` as `manual`, and the annotated video labels the manually selected events accordingly.
+Every automatic proposal requires explicit operator review before mechanical calculations are run. The proposal is saved separately before the existing review window opens, including when automatic detection fails. Drag the `Frame` trackbar to any frame, or use `n`/Right Arrow and `p`/Left Arrow for frame-by-frame review. Click `TAKE-OFF` on the first frame where neither foot touches the ground, then click `LANDING` on the first frame where either foot touches the ground again. Click `ACCEPT` to calculate and report the result, or `CANCEL`/Escape to leave the analysis pending without accepted mechanical metrics. The output retains `automatic_proposal`, records the review decision and accepted `confirmed_events`, and labels reviewed events in the annotated video. Software test fixtures are not actual scientific reviews.
 
 Manual review requires a graphical display because it uses OpenCV HighGUI. If the Raspberry Pi is operated headlessly over SSH, run the review locally with a display or use an X11/VNC session.
 
@@ -104,3 +107,5 @@ The flight-time equation assumes vertical ballistic motion and equal COM heights
 - Video frame index and camera callback timestamp index may not map one-to-one on every Picamera2/encoder configuration. This prototype checks counts and falls back to nominal fps if they differ. For a study-grade implementation, validate timestamp/frame alignment experimentally and consider recording frames with their own timestamps or using a camera/encoder pipeline that preserves frame PTS.
 - A nominal 60 fps video has about 16.7 ms frame spacing. Verify actual timing and quantify event-detection errors against manual labels.
 - Before using results for research or clinical decisions, validate event timing on held-out videos under the actual range of lighting and footwear.
+
+For file-only review with a new output directory, follow [MANUAL_REVIEW.md](../docs/MANUAL_REVIEW.md). Actual GUI navigation, correction, acceptance, export and cancellation remain pending. The 31 cm input has no verified measurement definition; force and power remain conditional estimates for the declared CMJ protocol.

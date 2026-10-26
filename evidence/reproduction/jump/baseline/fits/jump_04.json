@@ -1,0 +1,43 @@
+{
+  "held_out": "training_dataset/jump_04.mp4",
+  "training_videos": [
+    "training_dataset/jump_01.mp4",
+    "training_dataset/jump_02.mp4",
+    "training_dataset/jump_03.mp4",
+    "training_dataset/jump_05.mp4",
+    "training_dataset/jump_06.mp4",
+    "training_dataset/jump_07.mp4",
+    "training_dataset/jump_08.mp4",
+    "training_dataset/jump_09.mp4",
+    "training_dataset/jump_10.mp4",
+    "training_dataset/jump_11.mp4",
+    "training_dataset/jump_12.mp4",
+    "training_dataset/jump_13.mp4",
+    "training_dataset/jump_14.mp4",
+    "training_dataset/jump_15.mp4",
+    "training_dataset/jump_16.mp4",
+    "training_dataset/jump_17.mp4",
+    "training_dataset/jump_18.mp4",
+    "training_dataset/jump_19.mp4",
+    "training_dataset/jump_20.mp4"
+  ],
+  "seconds": 128.80078220367432,
+  "n_iter": 7099,
+  "params": {
+    "C": 0.1,
+    "class_weight": "balanced",
+    "dual": "auto",
+    "fit_intercept": true,
+    "intercept_scaling": 1,
+    "loss": "squared_hinge",
+    "max_iter": 10000,
+    "multi_class": "ovr",
+    "penalty": "l2",
+    "random_state": 42,
+    "tol": 0.0001,
+    "verbose": 0
+  },
+  "warnings": [],
+  "fit_method": "same historical StandardScaler + LinearSVC expression in an independent worker",
+  "worker_pid": 24660
+}

@@ -1,0 +1,33 @@
+{
+  "first_recording": "20260916T101922_610535Z_mcp3008",
+  "filtered_positive_amplitude": 0.1766114147895965,
+  "high_frequency_residual_noise": 0.04562828616127035,
+  "old_6x_noise_guard": 0.2737697169676221,
+  "filtered_background_scale": 0.021316189998556757,
+  "new_6x_background_guard": 0.12789713999134056,
+  "old_guard_rejects": true,
+  "new_guard_rejects": false,
+  "historical_zero_R_reproduced_by_unversioned_v1": true,
+  "v1_2_0_R": 10,
+  "filter_column_comparison": [
+    {
+      "column": "filtered_oriented_signal",
+      "historical_rows": 8000,
+      "current_rows": 8000,
+      "finite_masks_match": true,
+      "max_abs_delta": 0.0,
+      "tolerance": 1e-07,
+      "matches": true
+    },
+    {
+      "column": "time_s",
+      "historical_rows": 8000,
+      "current_rows": 8000,
+      "finite_masks_match": true,
+      "max_abs_delta": 0.0,
+      "tolerance": 1e-09,
+      "matches": true
+    }
+  ],
+  "attribution_limit": "The numerical/algorithmic match supports compatibility with the early source, not certain attribution of the original unversioned acquisition."
+}

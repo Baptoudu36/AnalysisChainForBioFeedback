@@ -1,0 +1,299 @@
+{
+  "browser": "140.0.7339.16",
+  "errors": [],
+  "observerCalls": [
+    {
+      "url": "http://127.0.0.1:8768/validation/software_20261021/browser_harness/responsive.html",
+      "target": "#document",
+      "valid": true,
+      "stack": "Error\n    at MutationObserver.observe (<anonymous>:2:216)\n    at InjectedScript._setupGlobalListenersRemovalDetection (<anonymous>:7892:8)\n    at new InjectedScript (<anonymous>:6845:10)\n    at <anonymous>:8288:16\n    at <anonymous>:8289:11"
+    }
+  ],
+  "results": {
+    "completed": true,
+    "results": [
+      {
+        "width": 1280,
+        "ecgViewport": 1280,
+        "ecgScroll": 1280,
+        "jumpViewport": 1280,
+        "jumpScroll": 1280,
+        "canvases": [
+          {
+            "id": "raw-chart",
+            "width": 1184,
+            "height": 180,
+            "bitmap": [
+              1184,
+              180
+            ]
+          },
+          {
+            "id": "filtered-chart",
+            "width": 1184,
+            "height": 210,
+            "bitmap": [
+              1184,
+              210
+            ]
+          },
+          {
+            "id": "rr-chart",
+            "width": 1184,
+            "height": 150,
+            "bitmap": [
+              1184,
+              150
+            ]
+          },
+          {
+            "id": "detail-chart",
+            "width": 575.71875,
+            "height": 170,
+            "bitmap": [
+              576,
+              170
+            ]
+          }
+        ],
+        "error": false,
+        "recording": "merged_second.zip"
+      },
+      {
+        "width": 768,
+        "ecgViewport": 768,
+        "ecgScroll": 768,
+        "jumpViewport": 768,
+        "jumpScroll": 768,
+        "canvases": [
+          {
+            "id": "raw-chart",
+            "width": 672,
+            "height": 150,
+            "bitmap": [
+              672,
+              150
+            ]
+          },
+          {
+            "id": "filtered-chart",
+            "width": 672,
+            "height": 170,
+            "bitmap": [
+              672,
+              170
+            ]
+          },
+          {
+            "id": "rr-chart",
+            "width": 672,
+            "height": 150,
+            "bitmap": [
+              672,
+              150
+            ]
+          },
+          {
+            "id": "detail-chart",
+            "width": 670,
+            "height": 170,
+            "bitmap": [
+              670,
+              170
+            ]
+          }
+        ],
+        "error": false,
+        "recording": "merged_second.zip"
+      },
+      {
+        "width": 390,
+        "ecgViewport": 390,
+        "ecgScroll": 390,
+        "jumpViewport": 390,
+        "jumpScroll": 390,
+        "canvases": [
+          {
+            "id": "raw-chart",
+            "width": 322,
+            "height": 150,
+            "bitmap": [
+              322,
+              150
+            ]
+          },
+          {
+            "id": "filtered-chart",
+            "width": 322,
+            "height": 170,
+            "bitmap": [
+              322,
+              170
+            ]
+          },
+          {
+            "id": "rr-chart",
+            "width": 322,
+            "height": 150,
+            "bitmap": [
+              322,
+              150
+            ]
+          },
+          {
+            "id": "detail-chart",
+            "width": 330,
+            "height": 170,
+            "bitmap": [
+              330,
+              170
+            ]
+          }
+        ],
+        "error": false,
+        "recording": "merged_second.zip"
+      },
+      {
+        "width": 1440,
+        "ecgViewport": 1440,
+        "ecgScroll": 1440,
+        "jumpViewport": 1440,
+        "jumpScroll": 1440,
+        "canvases": [
+          {
+            "id": "raw-chart",
+            "width": 1344,
+            "height": 180,
+            "bitmap": [
+              1344,
+              180
+            ]
+          },
+          {
+            "id": "filtered-chart",
+            "width": 1344,
+            "height": 210,
+            "bitmap": [
+              1344,
+              210
+            ]
+          },
+          {
+            "id": "rr-chart",
+            "width": 1344,
+            "height": 150,
+            "bitmap": [
+              1344,
+              150
+            ]
+          },
+          {
+            "id": "detail-chart",
+            "width": 657.671875,
+            "height": 170,
+            "bitmap": [
+              658,
+              170
+            ]
+          }
+        ],
+        "error": false,
+        "recording": "merged_second.zip"
+      },
+      {
+        "width": 390,
+        "ecgViewport": 390,
+        "ecgScroll": 390,
+        "jumpViewport": 390,
+        "jumpScroll": 390,
+        "canvases": [
+          {
+            "id": "raw-chart",
+            "width": 322,
+            "height": 150,
+            "bitmap": [
+              322,
+              150
+            ]
+          },
+          {
+            "id": "filtered-chart",
+            "width": 322,
+            "height": 170,
+            "bitmap": [
+              322,
+              170
+            ]
+          },
+          {
+            "id": "rr-chart",
+            "width": 322,
+            "height": 150,
+            "bitmap": [
+              322,
+              150
+            ]
+          },
+          {
+            "id": "detail-chart",
+            "width": 330,
+            "height": 170,
+            "bitmap": [
+              330,
+              170
+            ]
+          }
+        ],
+        "error": false,
+        "recording": "merged_second.zip"
+      },
+      {
+        "width": 1024,
+        "ecgViewport": 1024,
+        "ecgScroll": 1024,
+        "jumpViewport": 1024,
+        "jumpScroll": 1024,
+        "canvases": [
+          {
+            "id": "raw-chart",
+            "width": 928,
+            "height": 163.828125,
+            "bitmap": [
+              928,
+              164
+            ]
+          },
+          {
+            "id": "filtered-chart",
+            "width": 928,
+            "height": 184.3125,
+            "bitmap": [
+              928,
+              184
+            ]
+          },
+          {
+            "id": "rr-chart",
+            "width": 928,
+            "height": 150,
+            "bitmap": [
+              928,
+              150
+            ]
+          },
+          {
+            "id": "detail-chart",
+            "width": 926,
+            "height": 170,
+            "bitmap": [
+              926,
+              170
+            ]
+          }
+        ],
+        "error": false,
+        "recording": "merged_second.zip"
+      }
+    ]
+  }
+}

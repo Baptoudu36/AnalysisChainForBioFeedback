@@ -1,0 +1,81 @@
+[
+  {
+    "fixture": "duplicate_time",
+    "provenance": "synthetic transformation of a copied input for a software branch check; not an acquisition or replacement analysis",
+    "result": {
+      "error": "ValueError('Timestamps must be strictly increasing.')"
+    },
+    "python_warnings": []
+  },
+  {
+    "fixture": "short_duration",
+    "provenance": "synthetic transformation of a copied input for a software branch check; not an acquisition or replacement analysis",
+    "result": {
+      "error": "ValueError('Need at least 3 seconds for ECG analysis.')"
+    },
+    "python_warnings": []
+  },
+  {
+    "fixture": "nonfinite_signal",
+    "provenance": "synthetic transformation of a copied input for a software branch check; not an acquisition or replacement analysis",
+    "result": {
+      "error": "ValueError('Need at least 100 finite samples and finite timestamps.')"
+    },
+    "python_warnings": []
+  },
+  {
+    "fixture": "large_time_gap",
+    "provenance": "synthetic transformation of a copied input for a software branch check; not an acquisition or replacement analysis",
+    "result": {
+      "error": "ValueError('Large time gap detected; analysis stopped.')"
+    },
+    "python_warnings": []
+  },
+  {
+    "fixture": "flat_rail",
+    "provenance": "synthetic transformation of a copied input for a software branch check; not an acquisition or replacement analysis",
+    "result": {
+      "error": null,
+      "R_candidates": 0,
+      "accepted_RR": 0,
+      "median_hr_bpm": null,
+      "messages": [
+        "PQRST markers are algorithmic candidates; inspect the plot before use.",
+        "More than 1% of ADC codes are near a rail.",
+        "No sufficiently dominant R peaks relative to filtered background."
+      ]
+    },
+    "python_warnings": []
+  },
+  {
+    "fixture": "brief_initial_clipping",
+    "provenance": "synthetic transformation of a copied input for a software branch check; not an acquisition or replacement analysis",
+    "result": {
+      "error": null,
+      "R_candidates": 11,
+      "accepted_RR": 10,
+      "median_hr_bpm": 73.09431975446822,
+      "messages": [
+        "PQRST markers are algorithmic candidates; inspect the plot before use.",
+        "More than 1% of ADC codes are near a rail."
+      ]
+    },
+    "python_warnings": []
+  },
+  {
+    "fixture": "transport_warning_metadata",
+    "provenance": "synthetic transformation of a copied input for a software branch check; not an acquisition or replacement analysis",
+    "result": {
+      "error": null,
+      "R_candidates": 11,
+      "accepted_RR": 10,
+      "median_hr_bpm": 73.09431975446822,
+      "messages": [
+        "PQRST markers are algorithmic candidates; inspect the plot before use.",
+        "MCP3008 transaction errors were observed.",
+        "pigpio notification gaps were observed."
+      ]
+    },
+    "python_warnings": []
+  }
+]

@@ -1,0 +1,55 @@
+{
+  "annotated_takeoff": 144,
+  "annotated_landing": 172,
+  "candidates": [
+    {
+      "takeoff": 53,
+      "landing": 90,
+      "flight_frames": 37,
+      "margin": 0.1099891799964274,
+      "passes_threshold": false
+    },
+    {
+      "takeoff": 94,
+      "landing": 173,
+      "flight_frames": 79,
+      "margin": 0.3079472461360435,
+      "passes_threshold": true
+    },
+    {
+      "takeoff": 184,
+      "landing": 203,
+      "flight_frames": 19,
+      "margin": 0.16356422634111992,
+      "passes_threshold": true
+    },
+    {
+      "takeoff": 227,
+      "landing": 267,
+      "flight_frames": 40,
+      "margin": 0.3162559090819453,
+      "passes_threshold": true
+    }
+  ],
+  "selected": {
+    "takeoff": 227,
+    "landing": 267,
+    "flight_frames": 40,
+    "margin": 0.3162559090819453,
+    "passes_threshold": true
+  },
+  "config": {
+    "roi_norm": [
+      0.0,
+      0.62,
+      1.0,
+      0.4
+    ],
+    "model_path": "contact_model.joblib",
+    "smooth_window": 5,
+    "min_flight_frames": 3,
+    "min_contact_frames": 3,
+    "min_confidence_margin": 0.15,
+    "expected_fps": 60.0
+  }
+}

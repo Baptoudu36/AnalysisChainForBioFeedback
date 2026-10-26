@@ -1,0 +1,92 @@
+{
+  "inputs": {
+    "mass_kg": 66.0,
+    "push_off_distance_m": 0.31,
+    "nominal_fps": 60.0,
+    "roi_norm": [
+      0.0,
+      0.62,
+      1.0,
+      0.4
+    ],
+    "n_trials": 20,
+    "timing_source": "MP4 presentation timestamps written by rpicam-vid --save-pts"
+  },
+  "reference": {
+    "flight_time_pts_s": {
+      "mean": 0.44215,
+      "sd": 0.02266988496244581,
+      "cv_percent": 5.127193251712272,
+      "min": 0.4,
+      "max": 0.484
+    },
+    "jump_height_cm": {
+      "mean": 24.03264223125,
+      "sd": 2.4544940861477618,
+      "cv_percent": 10.213167834521943,
+      "min": 19.620000000000005,
+      "max": 28.725642
+    },
+    "takeoff_velocity_m_s": {
+      "mean": 2.1687457500000007,
+      "sd": 0.11119578574079676,
+      "cv_percent": 5.127193251712273,
+      "min": 1.9620000000000002,
+      "max": 2.3740200000000002
+    },
+    "mean_push_force_N": {
+      "mean": 1149.401114162746,
+      "sd": 51.26408841991063,
+      "cv_percent": 4.460069490819377,
+      "min": 1057.2395225806454,
+      "max": 1247.4181990103227
+    },
+    "mean_push_power_W": {
+      "mean": 1249.0861778046815,
+      "sd": 119.4172489102131,
+      "cv_percent": 9.560369094796458,
+      "min": 1037.1519716516132,
+      "max": 1480.6978764072433
+    },
+    "mean_push_power_W_kg": {
+      "mean": 18.925548148555787,
+      "sd": 1.8093522562153508,
+      "cv_percent": 9.560369094796458,
+      "min": 15.71442381290323,
+      "max": 22.434816309200656
+    }
+  },
+  "nominal60_minus_pts_flight_time_ms": {
+    "mean": -0.4833333333333245,
+    "max_abs": 1.3333333333332975
+  },
+  "quantisation": {
+    "one_frame_ms": 16.666666666666668,
+    "height_change_for_one_frame_cm_at_mean_flight": 1.841350624999999
+  },
+  "detector_lovo": {
+    "videos": 20,
+    "accepted_automatically": 20,
+    "rejected_to_manual_review": 0,
+    "both_events_exact": 4,
+    "both_events_within_1_frame": 9,
+    "both_events_within_2_frames": 14,
+    "wrong_jump_selected (error > 10 frames)": [
+      "jump_07",
+      "jump_20"
+    ],
+    "mean_annotated_frame_accuracy": 0.8256944444444445,
+    "flight_time_error_ms": {
+      "mean": 13.333333333333325,
+      "mean_abs": 49.99999999999999,
+      "median_abs": 33.33333333333333,
+      "max_abs": 233.33333333333334
+    },
+    "height_error_cm": {
+      "mean": 2.34009375,
+      "mean_abs": 5.51471875,
+      "median_abs": 3.2700000000000005,
+      "max_abs": 27.79499999999999
+    }
+  }
+}

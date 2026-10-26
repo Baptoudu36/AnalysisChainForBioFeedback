@@ -1,0 +1,28 @@
+{
+  "scope": "12 baseline-warning folds refitted at max_iter=30000; other baseline folds unchanged; no replacement of baseline or historical outputs",
+  "refitted_folds": 12,
+  "warnings_remaining": 7,
+  "converged_refits": 5,
+  "changed_event_pairs": 1,
+  "accepted": 20,
+  "rejected": 0,
+  "both_exact": 4,
+  "both_within1": 9,
+  "both_within2": 14,
+  "wrong_sequences": [
+    "jump_07"
+  ],
+  "mean_annotated_frame_accuracy": 0.8256944444444445,
+  "flight_time_error_ms": {
+    "mean": 18.333333333333325,
+    "mean_abs": 44.99999999999999,
+    "median_abs": 33.33333333333333,
+    "max_abs": 199.99999999999994
+  },
+  "height_error_cm": {
+    "mean": 2.646656249999999,
+    "mean_abs": 5.20815625,
+    "median_abs": 3.2700000000000005,
+    "max_abs": 27.79499999999999
+  }
+}

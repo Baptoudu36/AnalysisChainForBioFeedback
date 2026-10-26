@@ -1,0 +1,202 @@
+[
+  {
+    "held_out": "training_dataset/jump_01.mp4",
+    "training_videos": 19,
+    "held_out_excluded": true,
+    "training_rows": 474,
+    "scaler_rows": 474,
+    "max_scaler_mean_difference": 0.0,
+    "params_match_log": true,
+    "historical_params": true
+  },
+  {
+    "held_out": "training_dataset/jump_02.mp4",
+    "training_videos": 19,
+    "held_out_excluded": true,
+    "training_rows": 477,
+    "scaler_rows": 477,
+    "max_scaler_mean_difference": 0.0,
+    "params_match_log": true,
+    "historical_params": true
+  },
+  {
+    "held_out": "training_dataset/jump_03.mp4",
+    "training_videos": 19,
+    "held_out_excluded": true,
+    "training_rows": 477,
+    "scaler_rows": 477,
+    "max_scaler_mean_difference": 0.0,
+    "params_match_log": true,
+    "historical_params": true
+  },
+  {
+    "held_out": "training_dataset/jump_04.mp4",
+    "training_videos": 19,
+    "held_out_excluded": true,
+    "training_rows": 480,
+    "scaler_rows": 480,
+    "max_scaler_mean_difference": 0.0,
+    "params_match_log": true,
+    "historical_params": true
+  },
+  {
+    "held_out": "training_dataset/jump_05.mp4",
+    "training_videos": 19,
+    "held_out_excluded": true,
+    "training_rows": 477,
+    "scaler_rows": 477,
+    "max_scaler_mean_difference": 0.0,
+    "params_match_log": true,
+    "historical_params": true
+  },
+  {
+    "held_out": "training_dataset/jump_06.mp4",
+    "training_videos": 19,
+    "held_out_excluded": true,
+    "training_rows": 480,
+    "scaler_rows": 480,
+    "max_scaler_mean_difference": 0.0,
+    "params_match_log": true,
+    "historical_params": true
+  },
+  {
+    "held_out": "training_dataset/jump_07.mp4",
+    "training_videos": 19,
+    "held_out_excluded": true,
+    "training_rows": 477,
+    "scaler_rows": 477,
+    "max_scaler_mean_difference": 0.0,
+    "params_match_log": true,
+    "historical_params": true
+  },
+  {
+    "held_out": "training_dataset/jump_08.mp4",
+    "training_videos": 19,
+    "held_out_excluded": true,
+    "training_rows": 477,
+    "scaler_rows": 477,
+    "max_scaler_mean_difference": 0.0,
+    "params_match_log": true,
+    "historical_params": true
+  },
+  {
+    "held_out": "training_dataset/jump_09.mp4",
+    "training_videos": 19,
+    "held_out_excluded": true,
+    "training_rows": 480,
+    "scaler_rows": 480,
+    "max_scaler_mean_difference": 0.0,
+    "params_match_log": true,
+    "historical_params": true
+  },
+  {
+    "held_out": "training_dataset/jump_10.mp4",
+    "training_videos": 19,
+    "held_out_excluded": true,
+    "training_rows": 477,
+    "scaler_rows": 477,
+    "max_scaler_mean_difference": 0.0,
+    "params_match_log": true,
+    "historical_params": true
+  },
+  {
+    "held_out": "training_dataset/jump_11.mp4",
+    "training_videos": 19,
+    "held_out_excluded": true,
+    "training_rows": 480,
+    "scaler_rows": 480,
+    "max_scaler_mean_difference": 0.0,
+    "params_match_log": true,
+    "historical_params": true
+  },
+  {
+    "held_out": "training_dataset/jump_12.mp4",
+    "training_videos": 19,
+    "held_out_excluded": true,
+    "training_rows": 480,
+    "scaler_rows": 480,
+    "max_scaler_mean_difference": 0.0,
+    "params_match_log": true,
+    "historical_params": true
+  },
+  {
+    "held_out": "training_dataset/jump_13.mp4",
+    "training_videos": 19,
+    "held_out_excluded": true,
+    "training_rows": 480,
+    "scaler_rows": 480,
+    "max_scaler_mean_difference": 0.0,
+    "params_match_log": true,
+    "historical_params": true
+  },
+  {
+    "held_out": "training_dataset/jump_14.mp4",
+    "training_videos": 19,
+    "held_out_excluded": true,
+    "training_rows": 480,
+    "scaler_rows": 480,
+    "max_scaler_mean_difference": 0.0,
+    "params_match_log": true,
+    "historical_params": true
+  },
+  {
+    "held_out": "training_dataset/jump_15.mp4",
+    "training_videos": 19,
+    "held_out_excluded": true,
+    "training_rows": 480,
+    "scaler_rows": 480,
+    "max_scaler_mean_difference": 0.0,
+    "params_match_log": true,
+    "historical_params": true
+  },
+  {
+    "held_out": "training_dataset/jump_16.mp4",
+    "training_videos": 19,
+    "held_out_excluded": true,
+    "training_rows": 480,
+    "scaler_rows": 480,
+    "max_scaler_mean_difference": 0.0,
+    "params_match_log": true,
+    "historical_params": true
+  },
+  {
+    "held_out": "training_dataset/jump_17.mp4",
+    "training_videos": 19,
+    "held_out_excluded": true,
+    "training_rows": 480,
+    "scaler_rows": 480,
+    "max_scaler_mean_difference": 0.0,
+    "params_match_log": true,
+    "historical_params": true
+  },
+  {
+    "held_out": "training_dataset/jump_18.mp4",
+    "training_videos": 19,
+    "held_out_excluded": true,
+    "training_rows": 480,
+    "scaler_rows": 480,
+    "max_scaler_mean_difference": 0.0,
+    "params_match_log": true,
+    "historical_params": true
+  },
+  {
+    "held_out": "training_dataset/jump_19.mp4",
+    "training_videos": 19,
+    "held_out_excluded": true,
+    "training_rows": 480,
+    "scaler_rows": 480,
+    "max_scaler_mean_difference": 0.0,
+    "params_match_log": true,
+    "historical_params": true
+  },
+  {
+    "held_out": "training_dataset/jump_20.mp4",
+    "training_videos": 19,
+    "held_out_excluded": true,
+    "training_rows": 480,
+    "scaler_rows": 480,
+    "max_scaler_mean_difference": 0.0,
+    "params_match_log": true,
+    "historical_params": true
+  }
+]

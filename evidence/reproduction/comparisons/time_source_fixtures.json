@@ -1,0 +1,50 @@
+[
+  {
+    "case": "valid_sensor",
+    "result": {
+      "takeoff_frame_index": 1,
+      "landing_frame_index": 3,
+      "takeoff_video_time_s": 0.016666666666666666,
+      "landing_video_time_s": 0.05,
+      "flight_time_s": 0.034,
+      "timestamp_source": "sensor_timestamp_ns",
+      "frames_decoded": 4
+    }
+  },
+  {
+    "case": "count_mismatch",
+    "result": {
+      "takeoff_frame_index": 1,
+      "landing_frame_index": 3,
+      "takeoff_video_time_s": 0.016666666666666666,
+      "landing_video_time_s": 0.05,
+      "flight_time_s": 0.03333333333333333,
+      "timestamp_source": "nominal_frame_rate_fallback",
+      "frames_decoded": 4
+    }
+  },
+  {
+    "case": "nonmonotonic_internal",
+    "result": {
+      "takeoff_frame_index": 1,
+      "landing_frame_index": 3,
+      "takeoff_video_time_s": 0.016666666666666666,
+      "landing_video_time_s": 0.05,
+      "flight_time_s": 0.017,
+      "timestamp_source": "sensor_timestamp_ns",
+      "frames_decoded": 4
+    }
+  },
+  {
+    "case": "missing_sensor_file",
+    "result": {
+      "takeoff_frame_index": 1,
+      "landing_frame_index": 3,
+      "takeoff_video_time_s": 0.016666666666666666,
+      "landing_video_time_s": 0.05,
+      "flight_time_s": 0.03333333333333333,
+      "timestamp_source": "nominal_frame_rate_fallback",
+      "frames_decoded": 4
+    }
+  }
+]
