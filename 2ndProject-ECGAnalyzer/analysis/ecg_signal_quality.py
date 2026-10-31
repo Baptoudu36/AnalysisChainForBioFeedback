@@ -45,7 +45,7 @@ INK, ACCENT, MUTED, WARN = "#1f2937", "#1d4ed8", "#9ca3af", "#b91c1c"
 
 
 def load_run(folder: Path):
-    raw = np.genfromtxt(folder / "raw.csv", delimiter=",", names=True)
+    raw = np.genfromtxt(folder / "raw.csv", delimiter=",", names=True, ndmin=1)
     rr = np.genfromtxt(folder / "rr_intervals.csv", delimiter=",", names=True, ndmin=1)
     metadata = json.loads((folder / "metadata.json").read_text(encoding="utf-8"))
     return raw, rr, metadata
@@ -53,23 +53,36 @@ def load_run(folder: Path):
 
 def band_power_fractions(f, p):
     total = float(p.sum())
-    return {f"{lo:g}-{hi:g} Hz": float(p[(f >= lo) & (f < hi)].sum() / total)
+    return {f"{lo:g}-{hi:g} Hz": (float(p[(f >= lo) & (f < hi)].sum() / total)
+            if total > 0 and np.isfinite(total) else None)
             for lo, hi in BANDS_HZ}
 
 
 def hrv_time_domain(rr_s: np.ndarray):
+    """Descriptive retained-RR statistics; never invent values for missing intervals."""
+    rr_s = np.asarray(rr_s, dtype=float)
+    if rr_s.ndim != 1:
+        raise ValueError("RR intervals must be a one-dimensional series")
+    valid = np.isfinite(rr_s) & (rr_s > 0)
+    invalid_count = int((~valid).sum())
+    n = len(rr_s)
+    # Do not silently remove invalid intervals: that would create false adjacency.
+    available = n > 0 and invalid_count == 0
     rr_ms = rr_s * 1000.0
     diff = np.diff(rr_ms)
     return {
         "n_rr": int(len(rr_ms)),
-        "mean_rr_ms": float(rr_ms.mean()),
-        "mean_hr_bpm": float(60000.0 / rr_ms.mean()),
-        "min_hr_bpm": float(60000.0 / rr_ms.max()),
-        "max_hr_bpm": float(60000.0 / rr_ms.min()),
-        "sdnn_ms": float(rr_ms.std(ddof=1)),
-        "rmssd_ms": float(np.sqrt(np.mean(diff ** 2))),
-        "note": ("Ultra-short window (~10 s). Standard HRV reporting needs at "
-                 "least 5 min; values are illustrative of the pipeline only."),
+        "invalid_rr_count": invalid_count,
+        "mean_rr_ms": float(rr_ms.mean()) if available else None,
+        "mean_hr_bpm": float(60000.0 / rr_ms.mean()) if available else None,
+        "min_hr_bpm": float(60000.0 / rr_ms.max()) if available else None,
+        "max_hr_bpm": float(60000.0 / rr_ms.min()) if available else None,
+        "sdnn_ms": float(rr_ms.std(ddof=1)) if available and n >= 2 else None,
+        "rmssd_ms": float(np.sqrt(np.mean(diff ** 2))) if available and n >= 2 else None,
+        "unavailable_reason": ("invalid RR values" if invalid_count else
+                               "no retained RR intervals" if n == 0 else
+                               "SDNN and RMSSD require at least two RR intervals" if n == 1 else None),
+        "note": "Descriptive retained-RR statistics only; short recordings do not establish physiological HRV validity.",
     }
 
 
@@ -87,7 +100,11 @@ def main(argv=None):
 
     raw, rr_table, metadata = load_run(args.run_folder)
     t, v, adc = raw["time_s"], raw["raw_signal"], raw["raw_adc"]
+    if len(t) < 2 or not all(np.all(np.isfinite(a)) for a in (t, v, adc)):
+        raise ValueError("At least two finite time, signal and ADC samples are required")
     dt = np.diff(t)
+    if np.any(dt <= 0):
+        raise ValueError("Sample timestamps must be strictly increasing")
     fs = (len(t) - 1) / (t[-1] - t[0])
     vref = float(metadata.get("vref_v", 3.3))
 
@@ -98,12 +115,24 @@ def main(argv=None):
     f, p = welch(x - x.mean(), fs=fs, nperseg=min(len(x), 4096))
     fractions = band_power_fractions(f, p)
     mains_mask = (f >= MAINS_HZ - 1) & (f <= MAINS_HZ + 1)
-    mains_peak_hz = float(f[mains_mask][np.argmax(p[mains_mask])])
-
-    bp = sosfiltfilt(butter(4, [0.5, 40.0], btype="bandpass", fs=fs, output="sos"), x)
-    b, a = iirnotch(MAINS_HZ, Q=30.0, fs=fs)
-    bp_notch = filtfilt(b, a, bp)
-    residual_50 = bp - bp_notch
+    def peak(mask):
+        return float(f[mask][np.argmax(p[mask])]) if np.any(mask) and p[mask].max() > 0 else None
+    mains_peak_hz = peak(mains_mask)
+    unavailable = {}
+    bp = bp_notch = residual_50 = None
+    try:
+        bp = sosfiltfilt(butter(4, [0.5, 40.0], btype="bandpass", fs=fs, output="sos"), x)
+    except ValueError as exc:
+        unavailable["bandpass"] = str(exc)
+    if bp is not None:
+        try:
+            b, a = iirnotch(MAINS_HZ, Q=30.0, fs=fs)
+            bp_notch = filtfilt(b, a, bp)
+            residual_50 = bp - bp_notch
+        except ValueError as exc:
+            unavailable["notch"] = str(exc)
+    else:
+        unavailable["notch"] = "band-pass unavailable"
     ecg_band = (f >= 0.5) & (f < 40.0)
 
     rr_s = rr_table["RR_s"][rr_table["in_configured_range"] == 1]
@@ -113,6 +142,8 @@ def main(argv=None):
         "run": str(args.run_folder.name),
         "script_version": metadata.get("script_version"),
         "timestamp_kind": metadata.get("timestamp_kind"),
+        "quality_analysis_version": "robustness-20261021",
+        "unavailable_processing": unavailable,
         "timing": {
             "samples": int(len(t)),
             "span_s": float(t[-1] - t[0]),
@@ -139,21 +170,24 @@ def main(argv=None):
         "spectrum": {
             "band_power_fractions": fractions,
             "mains_peak_hz": mains_peak_hz,
-            "fundamental_hz_below_3hz": float(f[(f > 0.5) & (f < 3)][np.argmax(p[(f > 0.5) & (f < 3)])]),
-            "rms_removed_by_50hz_notch_v": float(np.sqrt(np.mean(residual_50 ** 2))),
-            "rms_bandpassed_v": float(np.sqrt(np.mean(bp ** 2))),
-            "ecg_band_power_fraction": float(p[ecg_band].sum() / p.sum()),
+            "fundamental_hz_below_3hz": peak((f > 0.5) & (f < 3)),
+            "rms_removed_by_50hz_notch_v": float(np.sqrt(np.mean(residual_50 ** 2))) if residual_50 is not None else None,
+            "rms_bandpassed_v": float(np.sqrt(np.mean(bp ** 2))) if bp is not None else None,
+            "ecg_band_power_fraction": float(p[ecg_band].sum() / p.sum()) if p.sum() > 0 else None,
         },
         "hrv_time_domain": hrv,
     }
-    (args.out / "quality_metrics.json").write_text(json.dumps(metrics, indent=2) + "\n")
+    # Strict JSON: unknown values are null; reject non-finite metadata rather than emit NaN.
+    serialized = json.dumps(metrics, indent=2, allow_nan=False)
+    (args.out / "quality_metrics.json").write_text(serialized + "\n")
 
     # --- Figure 1: spectrum -------------------------------------------------
     fig, ax = plt.subplots(figsize=(7.2, 2.8), constrained_layout=True)
     ax.semilogy(f, p, color=INK, lw=0.9)
     ax.axvspan(0.5, 40, color=ACCENT, alpha=0.08, label="ECG analysis band 0.5–40 Hz")
     ax.axvline(MAINS_HZ, color=WARN, lw=1, ls="--", label=f"Mains {MAINS_HZ:g} Hz")
-    ax.annotate(f"{fractions['45-55 Hz'] * 100:.0f}% of power\nat {mains_peak_hz:.1f} Hz",
+    if mains_peak_hz is not None and fractions['45-55 Hz'] is not None:
+        ax.annotate(f"{fractions['45-55 Hz'] * 100:.0f}% in 45–55 Hz\npeak {mains_peak_hz:.1f} Hz",
                 xy=(mains_peak_hz, p[mains_mask].max()), xytext=(62, p[mains_mask].max() * 0.02),
                 color=WARN, fontsize=8, arrowprops=dict(arrowstyle="->", color=WARN))
     ax.set(xlim=(0, 120), xlabel="Frequency (Hz)", ylabel="PSD (V²/Hz)",
@@ -166,10 +200,16 @@ def main(argv=None):
     sel = grid <= grid[0] + args.plot_seconds
     fig, axes = plt.subplots(3, 1, figsize=(7.2, 5.0), sharex=True, constrained_layout=True)
     axes[0].plot(grid[sel], x[sel], color=MUTED, lw=0.8)
-    axes[0].set(ylabel="V", title="① Raw ADC voltage (MCP3008, 800 Hz)")
-    axes[1].plot(grid[sel], bp[sel], color=INK, lw=0.8)
+    axes[0].set(ylabel="V", title=f"① Raw ADC voltage (timestamp-derived rate {fs:.2f} Hz)")
+    if bp is not None:
+        axes[1].plot(grid[sel], bp[sel], color=INK, lw=0.8)
+    else:
+        axes[1].text(.05, .5, "Band-pass unavailable: insufficient samples or sampling rate", transform=axes[1].transAxes)
     axes[1].set(ylabel="V", title="② Zero-phase Butterworth band-pass 0.5–40 Hz (pipeline default)")
-    axes[2].plot(grid[sel], bp_notch[sel], color=ACCENT, lw=0.9)
+    if bp_notch is not None:
+        axes[2].plot(grid[sel], bp_notch[sel], color=ACCENT, lw=0.9)
+    else:
+        axes[2].text(.05, .5, "Exploratory notch unavailable", transform=axes[2].transAxes)
     axes[2].set(ylabel="V", xlabel="Time (s)",
                 title="③ Band-pass + 50 Hz notch (Q = 30) — exploratory, not in the pipeline")
     fig.savefig(args.fig_dir / "fig_ecg_notch.png", dpi=200)
@@ -177,12 +217,17 @@ def main(argv=None):
 
     # --- Figure 3: timing ---------------------------------------------------
     fig, ax = plt.subplots(figsize=(7.2, 2.4), constrained_layout=True)
-    ax.hist(dt * 1000, bins=120, color=INK, alpha=0.85)
-    ax.axvline(1000 / float(metadata.get("target_fs_hz", fs)), color=ACCENT, ls="--", lw=1,
-               label="Nominal 1.25 ms (800 Hz)")
+    # Near-constant intervals can have a spread smaller than 120 floating bins.
+    intervals_ms = dt * 1000
+    bins = 120 if np.ptp(intervals_ms) > max(1e-10, abs(float(np.mean(intervals_ms))) * 1e-10) else 1
+    ax.hist(intervals_ms, bins=bins, color=INK, alpha=0.85)
+    target = metadata.get("target_fs_hz")
+    if isinstance(target, (int, float)) and np.isfinite(target) and target > 0:
+        ax.axvline(1000 / target, color=ACCENT, ls="--", lw=1,
+                   label=f"Nominal {1000 / target:g} ms ({target:g} Hz)")
     ax.set_yscale("log")
     ax.set(xlabel="Interval between consecutive samples (ms)", ylabel="Count (log)",
-           title="Software-timed sampling intervals (script v1.2.0)")
+           title="Intervals from recorded timestamps (not an independent physical clock check)")
     ax.legend(frameon=False, fontsize=8)
     fig.savefig(args.fig_dir / "fig_ecg_timing.png", dpi=200)
     plt.close(fig)
@@ -191,14 +236,19 @@ def main(argv=None):
     fig, ax = plt.subplots(figsize=(7.2, 2.4), constrained_layout=True)
     r_end = rr_table["R_time_s"][rr_table["in_configured_range"] == 1]
     ax.plot(r_end, rr_s * 1000, "o-", color=ACCENT, ms=4, lw=1)
-    ax.axhline(hrv["mean_rr_ms"], color=MUTED, ls="--", lw=1)
+    if hrv["mean_rr_ms"] is not None:
+        ax.axhline(hrv["mean_rr_ms"], color=MUTED, ls="--", lw=1)
+    else:
+        ax.text(.05, .5, "RR indicators unavailable: " + hrv["unavailable_reason"], transform=ax.transAxes)
+    def shown(value):
+        return "unavailable" if value is None else f"{value:.1f}"
     ax.set(xlabel="Time of R peak (s)", ylabel="RR interval (ms)",
-           title=(f"RR tachogram — mean HR {hrv['mean_hr_bpm']:.1f} bpm, "
-                  f"SDNN {hrv['sdnn_ms']:.1f} ms, RMSSD {hrv['rmssd_ms']:.1f} ms (n = {hrv['n_rr']})"))
+           title=(f"RR tachogram — mean HR {shown(hrv['mean_hr_bpm'])} bpm, "
+                  f"SDNN {shown(hrv['sdnn_ms'])} ms, RMSSD {shown(hrv['rmssd_ms'])} ms (n = {hrv['n_rr']})"))
     fig.savefig(args.fig_dir / "fig_ecg_tachogram.png", dpi=200)
     plt.close(fig)
 
-    print(json.dumps(metrics, indent=2))
+    print(serialized)
 
 
 if __name__ == "__main__":

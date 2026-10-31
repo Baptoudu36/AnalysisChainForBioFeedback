@@ -1,0 +1,508 @@
+{
+  "completed": true,
+  "tests": [
+    {
+      "name": "historical_1",
+      "passed": true,
+      "detail": {
+        "summary": "Duration\n9.999 s\n8,000 samples\nMeasured sampling\n800.01 Hz\nTarget 800 Hz\nMedian estimated HR\n—\n0 accepted RR intervals\nDetected R candidates\n0\nP 0 · Q 0 · S 0 · T 0",
+        "warnings": "Analysis warnings\nPQRST are exploratory peak candidates; inspect the plot before using them in the report.\nSignal has insufficient amplitude relative to noise for this detector.\nFewer than three RR intervals: the rate estimate is especially uncertain.",
+        "context": "Recording ID\n2026-09-16T10:19:32.794736+00:00\nSource\nmcp3008\nProcessing version\nunknown version\nAcquisition version\nnot supplied\nCandidate backend\nnot supplied\nTimestamp kind\nmonotonic midpoint of SPI transaction; software estimate\nUnits\nV at ADC input\nADC channel\n1\nPolarity\n1\nFilter\n0.5–40 Hz\nR threshold\nnot supplied\nProminence\n—\nRR accepted\n0\nRR excluded\n0\nFiles\nanalysis.json, filtered.csv, metadata.json, pqrst_candidates.csv, raw.csv, raw.npz, rr_intervals.csv\nFull metadata & analysis"
+      }
+    },
+    {
+      "name": "historical_1_canvas",
+      "passed": true,
+      "detail": [
+        {
+          "id": "raw-chart",
+          "w": 1462,
+          "h": 225,
+          "cssH": 180
+        },
+        {
+          "id": "filtered-chart",
+          "w": 1462,
+          "h": 263,
+          "cssH": 210
+        },
+        {
+          "id": "rr-chart",
+          "w": 1462,
+          "h": 188,
+          "cssH": 150
+        }
+      ]
+    },
+    {
+      "name": "historical_1_empty_export",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "historical_2",
+      "passed": true,
+      "detail": {
+        "summary": "Duration\n9.999 s\n7,997 samples\nMeasured sampling\n799.72 Hz\nTarget 800 Hz\nMedian estimated HR\n73.1 bpm\n10 accepted RR intervals\nDetected R candidates\n11\nP 0 · Q 11 · S 0 · T 0",
+        "warnings": "Analysis warnings\nPQRST are exploratory peak candidates; inspect the plot before using them in the report.\nMissing small-wave candidates: P=11, Q=0, S=11, T=11. Do not treat missing markers as physiological absence.",
+        "context": "Recording ID\n2026-09-16T10:49:43.404337+00:00\nSource\nmcp3008\nProcessing version\n1.2.0\nAcquisition version\n1.2.0\nCandidate backend\nnot supplied\nTimestamp kind\nmonotonic midpoint of SPI transaction; software estimate\nUnits\nV at ADC input\nADC channel\n1\nPolarity\n-1\nFilter\n0.5–40 Hz\nR threshold\nfiltered background\nProminence\n0.54176\nRR accepted\n10\nRR excluded\n0\nFiles\nanalysis.json, filtered.csv, metadata.json, pqrst_candidates.csv, raw.csv, raw.npz, rr_intervals.csv\nFull metadata & analysis"
+      }
+    },
+    {
+      "name": "historical_2_canvas",
+      "passed": true,
+      "detail": [
+        {
+          "id": "raw-chart",
+          "w": 1462,
+          "h": 225,
+          "cssH": 180
+        },
+        {
+          "id": "filtered-chart",
+          "w": 1462,
+          "h": 263,
+          "cssH": 210
+        },
+        {
+          "id": "rr-chart",
+          "w": 1462,
+          "h": 188,
+          "cssH": 150
+        },
+        {
+          "id": "detail-chart",
+          "w": 710,
+          "h": 213,
+          "cssH": 170
+        }
+      ]
+    },
+    {
+      "name": "unversioned_v1_first",
+      "passed": true,
+      "detail": {
+        "summary": "Duration\n9.999 s\n8,000 samples\nMeasured sampling\n800.01 Hz\nTarget 800 Hz\nMedian estimated HR\n—\n0 accepted RR intervals\nDetected R candidates\n0\nP 0 · Q 0 · S 0 · T 0",
+        "warnings": "Analysis warnings\nPQRST are exploratory peak candidates; inspect the plot before using them in the report.\nSignal has insufficient amplitude relative to noise for this detector.\nFewer than three RR intervals: the rate estimate is especially uncertain.",
+        "context": "Recording ID\n2026-10-21T07:38:55.318532+00:00\nSource\nfile\nProcessing version\nunknown version\nAcquisition version\nnot retained in replay metadata\nCandidate backend\nnot supplied\nTimestamp kind\nmonotonic midpoint of SPI transaction; software estimate\nUnits\nV at ADC input\nADC channel\n—\nPolarity\n1\nFilter\n0.5–40 Hz\nR threshold\nnot supplied\nProminence\n—\nRR accepted\n0\nRR excluded\n0\nFiles\nanalysis.json, filtered.csv, metadata.json, pqrst_candidates.csv, raw.csv, raw.npz, rr_intervals.csv\nFull metadata & analysis"
+      }
+    },
+    {
+      "name": "unversioned_v1_first_canvas",
+      "passed": true,
+      "detail": [
+        {
+          "id": "raw-chart",
+          "w": 1462,
+          "h": 225,
+          "cssH": 180
+        },
+        {
+          "id": "filtered-chart",
+          "w": 1462,
+          "h": 263,
+          "cssH": 210
+        },
+        {
+          "id": "rr-chart",
+          "w": 1462,
+          "h": 188,
+          "cssH": 150
+        }
+      ]
+    },
+    {
+      "name": "unversioned_v1_first_empty_export",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "unversioned_v1_second",
+      "passed": true,
+      "detail": {
+        "summary": "Duration\n9.999 s\n7,997 samples\nMeasured sampling\n799.72 Hz\nTarget 800 Hz\nMedian estimated HR\n73.1 bpm\n10 accepted RR intervals\nDetected R candidates\n11\nP 0 · Q 11 · S 0 · T 0",
+        "warnings": "Analysis warnings\nPQRST are exploratory peak candidates; inspect the plot before using them in the report.",
+        "context": "Recording ID\n2026-10-21T07:39:28.607261+00:00\nSource\nfile\nProcessing version\nunknown version\nAcquisition version\nnot retained in replay metadata\nCandidate backend\nnot supplied\nTimestamp kind\nmonotonic midpoint of SPI transaction; software estimate\nUnits\nV at ADC input\nADC channel\n—\nPolarity\n-1\nFilter\n0.5–40 Hz\nR threshold\nnot supplied\nProminence\n—\nRR accepted\n10\nRR excluded\n0\nFiles\nanalysis.json, filtered.csv, metadata.json, pqrst_candidates.csv, raw.csv, raw.npz, rr_intervals.csv\nFull metadata & analysis"
+      }
+    },
+    {
+      "name": "unversioned_v1_second_canvas",
+      "passed": true,
+      "detail": [
+        {
+          "id": "raw-chart",
+          "w": 1462,
+          "h": 225,
+          "cssH": 180
+        },
+        {
+          "id": "filtered-chart",
+          "w": 1462,
+          "h": 263,
+          "cssH": 210
+        },
+        {
+          "id": "rr-chart",
+          "w": 1462,
+          "h": 188,
+          "cssH": 150
+        },
+        {
+          "id": "detail-chart",
+          "w": 710,
+          "h": 213,
+          "cssH": 170
+        }
+      ]
+    },
+    {
+      "name": "v1_2_0_first",
+      "passed": true,
+      "detail": {
+        "summary": "Duration\n9.999 s\n8,000 samples\nMeasured sampling\n800.01 Hz\nTarget 800 Hz\nMedian estimated HR\n66.7 bpm\n9 accepted RR intervals\nDetected R candidates\n10\nP 0 · Q 6 · S 0 · T 0",
+        "warnings": "Analysis warnings\nPQRST are exploratory peak candidates; inspect the plot before using them in the report.\nMissing small-wave candidates: P=10, Q=4, S=10, T=10. Do not treat missing markers as physiological absence.",
+        "context": "Recording ID\n2026-10-21T07:35:27.708429+00:00\nSource\nfile\nProcessing version\n1.2.0\nAcquisition version\nnot retained in replay metadata\nCandidate backend\nnot supplied\nTimestamp kind\nmonotonic midpoint of SPI transaction; software estimate\nUnits\nV at ADC input\nADC channel\n—\nPolarity\n1\nFilter\n0.5–40 Hz\nR threshold\nfiltered background\nProminence\n0.12790\nRR accepted\n9\nRR excluded\n0\nFiles\nanalysis.json, filtered.csv, metadata.json, pqrst_candidates.csv, raw.csv, raw.npz, rr_intervals.csv\nFull metadata & analysis"
+      }
+    },
+    {
+      "name": "v1_2_0_first_canvas",
+      "passed": true,
+      "detail": [
+        {
+          "id": "raw-chart",
+          "w": 1462,
+          "h": 225,
+          "cssH": 180
+        },
+        {
+          "id": "filtered-chart",
+          "w": 1462,
+          "h": 263,
+          "cssH": 210
+        },
+        {
+          "id": "rr-chart",
+          "w": 1462,
+          "h": 188,
+          "cssH": 150
+        },
+        {
+          "id": "detail-chart",
+          "w": 710,
+          "h": 213,
+          "cssH": 170
+        }
+      ]
+    },
+    {
+      "name": "v1_2_0_second",
+      "passed": true,
+      "detail": {
+        "summary": "Duration\n9.999 s\n7,997 samples\nMeasured sampling\n799.72 Hz\nTarget 800 Hz\nMedian estimated HR\n73.1 bpm\n10 accepted RR intervals\nDetected R candidates\n11\nP 0 · Q 11 · S 0 · T 0",
+        "warnings": "Analysis warnings\nPQRST are exploratory peak candidates; inspect the plot before using them in the report.\nMissing small-wave candidates: P=11, Q=0, S=11, T=11. Do not treat missing markers as physiological absence.",
+        "context": "Recording ID\n2026-10-21T07:36:01.524682+00:00\nSource\nfile\nProcessing version\n1.2.0\nAcquisition version\nnot retained in replay metadata\nCandidate backend\nnot supplied\nTimestamp kind\nmonotonic midpoint of SPI transaction; software estimate\nUnits\nV at ADC input\nADC channel\n—\nPolarity\n-1\nFilter\n0.5–40 Hz\nR threshold\nfiltered background\nProminence\n0.54176\nRR accepted\n10\nRR excluded\n0\nFiles\nanalysis.json, filtered.csv, metadata.json, pqrst_candidates.csv, raw.csv, raw.npz, rr_intervals.csv\nFull metadata & analysis"
+      }
+    },
+    {
+      "name": "v1_2_0_second_canvas",
+      "passed": true,
+      "detail": [
+        {
+          "id": "raw-chart",
+          "w": 1462,
+          "h": 225,
+          "cssH": 180
+        },
+        {
+          "id": "filtered-chart",
+          "w": 1462,
+          "h": 263,
+          "cssH": 210
+        },
+        {
+          "id": "rr-chart",
+          "w": 1462,
+          "h": 188,
+          "cssH": 150
+        },
+        {
+          "id": "detail-chart",
+          "w": 710,
+          "h": 213,
+          "cssH": 170
+        }
+      ]
+    },
+    {
+      "name": "v1_3_0_first",
+      "passed": true,
+      "detail": {
+        "summary": "Duration\n9.999 s\n8,000 samples\nMeasured sampling\n800.01 Hz\nTarget 800 Hz\nMedian estimated HR\n66.7 bpm\n9 accepted RR intervals\nDetected R candidates\n10\nP 0 · Q 6 · S 0 · T 0",
+        "warnings": "Analysis warnings\nPQRST are exploratory peak candidates; inspect the plot before using them in the report.\nSmall-wave search assumes positive P/T and negative Q/S after orientation; inspect beat zoom before interpreting labels.\nMissing small-wave candidates: P=10, Q=4, S=10, T=10. Do not treat missing markers as physiological absence.",
+        "context": "Recording ID\n2026-10-21T07:36:07.155084+00:00\nSource\nfile\nProcessing version\n1.3.0\nAcquisition version\nnot retained in replay metadata\nCandidate backend\nnot supplied\nTimestamp kind\nmonotonic midpoint of SPI transaction; software estimate\nUnits\nV at ADC input\nADC channel\n—\nPolarity\n1\nFilter\n0.5–40 Hz\nR threshold\nfiltered background\nProminence\n0.12790\nRR accepted\n9\nRR excluded\n0\nFiles\nanalysis.json, filtered.csv, metadata.json, pqrst_candidates.csv, raw.csv, raw.npz, rr_intervals.csv\nFull metadata & analysis"
+      }
+    },
+    {
+      "name": "v1_3_0_first_canvas",
+      "passed": true,
+      "detail": [
+        {
+          "id": "raw-chart",
+          "w": 1462,
+          "h": 225,
+          "cssH": 180
+        },
+        {
+          "id": "filtered-chart",
+          "w": 1462,
+          "h": 263,
+          "cssH": 210
+        },
+        {
+          "id": "rr-chart",
+          "w": 1462,
+          "h": 188,
+          "cssH": 150
+        },
+        {
+          "id": "detail-chart",
+          "w": 710,
+          "h": 213,
+          "cssH": 170
+        }
+      ]
+    },
+    {
+      "name": "v1_3_0_second",
+      "passed": true,
+      "detail": {
+        "summary": "Duration\n9.999 s\n7,997 samples\nMeasured sampling\n799.72 Hz\nTarget 800 Hz\nMedian estimated HR\n73.1 bpm\n10 accepted RR intervals\nDetected R candidates\n11\nP 0 · Q 11 · S 0 · T 0",
+        "warnings": "Analysis warnings\nPQRST are exploratory peak candidates; inspect the plot before using them in the report.\nSmall-wave search assumes positive P/T and negative Q/S after orientation; inspect beat zoom before interpreting labels.\nMissing small-wave candidates: P=11, Q=0, S=11, T=11. Do not treat missing markers as physiological absence.",
+        "context": "Recording ID\n2026-10-21T07:36:14.448830+00:00\nSource\nfile\nProcessing version\n1.3.0\nAcquisition version\nnot retained in replay metadata\nCandidate backend\nnot supplied\nTimestamp kind\nmonotonic midpoint of SPI transaction; software estimate\nUnits\nV at ADC input\nADC channel\n—\nPolarity\n-1\nFilter\n0.5–40 Hz\nR threshold\nfiltered background\nProminence\n0.54176\nRR accepted\n10\nRR excluded\n0\nFiles\nanalysis.json, filtered.csv, metadata.json, pqrst_candidates.csv, raw.csv, raw.npz, rr_intervals.csv\nFull metadata & analysis"
+      }
+    },
+    {
+      "name": "v1_3_0_second_canvas",
+      "passed": true,
+      "detail": [
+        {
+          "id": "raw-chart",
+          "w": 1462,
+          "h": 225,
+          "cssH": 180
+        },
+        {
+          "id": "filtered-chart",
+          "w": 1462,
+          "h": 263,
+          "cssH": 210
+        },
+        {
+          "id": "rr-chart",
+          "w": 1462,
+          "h": 188,
+          "cssH": 150
+        },
+        {
+          "id": "detail-chart",
+          "w": 710,
+          "h": 213,
+          "cssH": 170
+        }
+      ]
+    },
+    {
+      "name": "merged_first",
+      "passed": true,
+      "detail": {
+        "summary": "Duration\n9.999 s\n8,000 samples\nMeasured sampling\n800.01 Hz\nTarget 800 Hz\nMedian estimated HR\n66.7 bpm\n9 accepted RR intervals\nDetected R candidates\n10\nP 0 · Q 6 · S 0 · T 0",
+        "warnings": "Analysis warnings\nPQRST markers are algorithmic candidates; inspect the plot before use.\nMissing small-wave candidates: P=10, Q=4, S=10, T=10. Missing markers do not imply physiological absence.",
+        "context": "Recording ID\n2026-10-21T07:36:21.209557+00:00\nSource\nfile\nProcessing version\n2.0.0-merged\nAcquisition version\nnot retained in replay metadata\nCandidate backend\nscipy-local-extrema\nTimestamp kind\nmonotonic midpoint of SPI transaction; software estimate\nUnits\nV at ADC input\nADC channel\n—\nPolarity\n1\nFilter\n0.5–40 Hz\nR threshold\nfiltered background\nProminence\n0.12790\nRR accepted\n9\nRR excluded\n0\nFiles\nanalysis.json, filtered.csv, metadata.json, pqrst_candidates.csv, raw.csv, raw.npz, rr_intervals.csv\nFull metadata & analysis"
+      }
+    },
+    {
+      "name": "merged_first_canvas",
+      "passed": true,
+      "detail": [
+        {
+          "id": "raw-chart",
+          "w": 1462,
+          "h": 225,
+          "cssH": 180
+        },
+        {
+          "id": "filtered-chart",
+          "w": 1462,
+          "h": 263,
+          "cssH": 210
+        },
+        {
+          "id": "rr-chart",
+          "w": 1462,
+          "h": 188,
+          "cssH": 150
+        },
+        {
+          "id": "detail-chart",
+          "w": 710,
+          "h": 213,
+          "cssH": 170
+        }
+      ]
+    },
+    {
+      "name": "merged_second",
+      "passed": true,
+      "detail": {
+        "summary": "Duration\n9.999 s\n7,997 samples\nMeasured sampling\n799.72 Hz\nTarget 800 Hz\nMedian estimated HR\n73.1 bpm\n10 accepted RR intervals\nDetected R candidates\n11\nP 0 · Q 11 · S 0 · T 0",
+        "warnings": "Analysis warnings\nPQRST markers are algorithmic candidates; inspect the plot before use.\nMissing small-wave candidates: P=11, Q=0, S=11, T=11. Missing markers do not imply physiological absence.",
+        "context": "Recording ID\n2026-10-21T07:36:24.454854+00:00\nSource\nfile\nProcessing version\n2.0.0-merged\nAcquisition version\nnot retained in replay metadata\nCandidate backend\nscipy-local-extrema\nTimestamp kind\nmonotonic midpoint of SPI transaction; software estimate\nUnits\nV at ADC input\nADC channel\n—\nPolarity\n-1\nFilter\n0.5–40 Hz\nR threshold\nfiltered background\nProminence\n0.54176\nRR accepted\n10\nRR excluded\n0\nFiles\nanalysis.json, filtered.csv, metadata.json, pqrst_candidates.csv, raw.csv, raw.npz, rr_intervals.csv\nFull metadata & analysis"
+      }
+    },
+    {
+      "name": "merged_second_canvas",
+      "passed": true,
+      "detail": [
+        {
+          "id": "raw-chart",
+          "w": 1462,
+          "h": 225,
+          "cssH": 180
+        },
+        {
+          "id": "filtered-chart",
+          "w": 1462,
+          "h": 263,
+          "cssH": 210
+        },
+        {
+          "id": "rr-chart",
+          "w": 1462,
+          "h": 188,
+          "cssH": 150
+        },
+        {
+          "id": "detail-chart",
+          "w": 710,
+          "h": 213,
+          "cssH": 170
+        }
+      ]
+    },
+    {
+      "name": "raw.csv_alone",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "raw.npz_alone",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "extracted_file_list",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "invalid_25",
+      "passed": true,
+      "detail": {
+        "notice": "Import failed; the previous recording is still displayed. Signal contains missing or non-finite samples; no rows were silently removed."
+      }
+    },
+    {
+      "name": "invalid_26",
+      "passed": true,
+      "detail": {
+        "notice": "Import failed; the previous recording is still displayed. Signal timestamps must increase and contain at least two valid samples."
+      }
+    },
+    {
+      "name": "invalid_27",
+      "passed": true,
+      "detail": {
+        "notice": "Import failed; the previous recording is still displayed. metadata.json must contain an object."
+      }
+    },
+    {
+      "name": "invalid_28",
+      "passed": true,
+      "detail": {
+        "notice": "Import failed; the previous recording is still displayed. Expected property name or '}' in JSON at position 1 (line 1 column 2)"
+      }
+    },
+    {
+      "name": "invalid_29",
+      "passed": true,
+      "detail": {
+        "notice": "Import failed; the previous recording is still displayed. Can't find end of central directory : is this a zip file ? If it is, see https://stuk.github.io/jszip/documentation/howto/read_zip.html"
+      }
+    },
+    {
+      "name": "invalid_30",
+      "passed": true,
+      "detail": {
+        "notice": "Import failed; the previous recording is still displayed. No recognized ECG output files selected."
+      }
+    },
+    {
+      "name": "invalid_31",
+      "passed": true,
+      "detail": {
+        "notice": "Import failed; the previous recording is still displayed. Multiple raw.csv files selected. Choose one output folder."
+      }
+    },
+    {
+      "name": "invalid_32",
+      "passed": true,
+      "detail": {
+        "notice": "Import failed; the previous recording is still displayed. RR rows need finite times and positive intervals/HR."
+      }
+    },
+    {
+      "name": "selection_flag_export",
+      "passed": true,
+      "detail": {
+        "csv": "\"recording_id\",\"input_name\",\"script_version\",\"beat\",\"R_time_s\",\"RR_before_s\",\"review_status\",\"selected\",\"flagged\",\"note\"\r\n\"2026-10-21T07:36:24.454854+00:00\",\"merged_second.zip\",\"2.0.0-merged\",\"1\",\"0.704341525430717\",\"\",\"Inspect\",\"0\",\"0\",\"\"\r\n\"2026-10-21T07:36:24.454854+00:00\",\"merged_second.zip\",\"2.0.0-merged\",\"2\",\"1.5321337895306586\",\"0.8277922640999416\",\"Inspect\",\"0\",\"0\",\"\"\r\n\"2026-10-21T07:36:24.454854+00:00\",\"merged_second.zip\",\"2.0.0-merged\",\"3\",\"2.3974392982272743\",\"0.8653055086966157\",\"Inspect\",\"0\",\"0\",\"\"\r\n\"2026-10-21T07:36:24.454854+00:00\",\"merged_second.zip\",\"2.0.0-merged\",\"4\",\"3.1889687592170977\",\"0.7915294609898234\",\"Flagged\",\"1\",\"1\",\"Validation fixture, \"\"quoted\"\"\nsecond line\"\r\n\"2026-10-21T07:36:24.454854+00:00\",\"merged_second.zip\",\"2.0.0-merged\",\"5\",\"3.952988507502693\",\"0.7640197482855955\",\"Inspect\",\"0\",\"0\",\"\"\r\n\"2026-10-21T07:36:24.454854+00:00\",\"merged_second.zip\",\"2.0.0-merged\",\"6\",\"4.752020617411851\",\"0.7990321099091582\",\"Inspect\",\"0\",\"0\",\"\"\r\n\"2026-10-21T07:36:24.454854+00:00\",\"merged_second.zip\",\"2.0.0-merged\",\"7\",\"5.563557142186568\",\"0.8115365247747164\",\"Inspect\",\"0\",\"0\",\"\"\r\n\"2026-10-21T07:36:24.454854+00:00\",\"merged_second.zip\",\"2.0.0-merged\",\"8\",\"6.4026033796655115\",\"0.8390462374789438\",\"Inspect\",\"0\",\"0\",\"\"\r\n\"2026-10-21T07:36:24.454854+00:00\",\"merged_second.zip\",\"2.0.0-merged\",\"9\",\"7.244150500117566\",\"0.8415471204520548\",\"Inspect\",\"0\",\"0\",\"\"\r\n\"2026-10-21T07:36:24.454854+00:00\",\"merged_second.zip\",\"2.0.0-merged\",\"10\",\"8.058187907865394\",\"0.8140374077478274\",\"Inspect\",\"0\",\"0\",\"\"\r\n\"2026-10-21T07:36:24.454854+00:00\",\"merged_second.zip\",\"2.0.0-merged\",\"11\",\"8.91724120912923\",\"0.8590533012638364\",\"Inspect\",\"0\",\"0\",\"\"\r\n"
+      }
+    },
+    {
+      "name": "flagged_filter",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "concurrent_last_import_wins",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "reset_cancels_pending_import",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "window_3",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "window_10",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "window_30",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "window_5",
+      "passed": true,
+      "detail": {}
+    }
+  ],
+  "passed": 41,
+  "failed": 0
+}

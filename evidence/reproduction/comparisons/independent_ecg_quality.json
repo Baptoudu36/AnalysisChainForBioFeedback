@@ -1,0 +1,34 @@
+[
+  {
+    "input": "20260916T101922_610535Z_mcp3008",
+    "samples": 8000,
+    "span_s": 9.998586949499899,
+    "measured_fs_hz": 800.0130458834573,
+    "median_interval_ms": 1.2500520000000015,
+    "min_interval_ms": 1.0694534999999994,
+    "max_interval_ms": 1.419582999999669,
+    "p95_abs_deviation_fraction": 0.024519779977138167,
+    "band_45_55_fraction": 0.5475368845758278,
+    "mains_peak_hz": 50.00081536771608,
+    "rms_removed_by_50hz_notch_v": 0.00735274139745922,
+    "rms_bandpassed_v": 0.035709200037287676,
+    "time_source": "software-estimated SPI transaction midpoints, not measured DMA timing",
+    "rr_dependent_hrv": "not calculated in this independent check"
+  },
+  {
+    "input": "run_20260916T104943Z_mcp3008",
+    "samples": 7997,
+    "span_s": 9.998530126500201,
+    "measured_fs_hz": 799.7175483631663,
+    "median_interval_ms": 1.2499740000002646,
+    "min_interval_ms": 0.6019010000000158,
+    "max_interval_ms": 2.9683330000001007,
+    "p95_abs_deviation_fraction": 0.008443375622518788,
+    "band_45_55_fraction": 0.20856366806486126,
+    "mains_peak_hz": 49.9823467726979,
+    "rms_removed_by_50hz_notch_v": 0.015063878975825205,
+    "rms_bandpassed_v": 0.21340885374969035,
+    "time_source": "software-estimated SPI transaction midpoints, not measured DMA timing",
+    "rr_dependent_hrv": "not calculated in this independent check"
+  }
+]

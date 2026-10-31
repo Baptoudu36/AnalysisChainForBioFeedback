@@ -1,0 +1,112 @@
+{
+  "_note": {
+    "original": null,
+    "transcription": "Transcribed from the results.csv shown in MediaSources/Demo recordings/SquatJump script trial.mp4 (path relative to repository root) (session jump_20261014_035847). The original file remained on the Raspberry Pi.",
+    "equal": false
+  },
+  "takeoff_frame_index": {
+    "original": 172,
+    "transcription": 172,
+    "equal": true
+  },
+  "landing_frame_index": {
+    "original": 197,
+    "transcription": 197,
+    "equal": true
+  },
+  "takeoff_video_time_s": {
+    "original": 2.8666666666666667,
+    "transcription": 2.8666666666666667,
+    "equal": true
+  },
+  "landing_video_time_s": {
+    "original": 3.283333333333333,
+    "transcription": 3.283333333333333,
+    "equal": true
+  },
+  "flight_time_s": {
+    "original": 0.4166666666666667,
+    "transcription": 0.4166666666666667,
+    "equal": true
+  },
+  "timestamp_source": {
+    "original": "nominal_frame_rate_fallback",
+    "transcription": "nominal_frame_rate_fallback",
+    "equal": true
+  },
+  "frames_decoded": {
+    "original": 336,
+    "transcription": 336,
+    "equal": true
+  },
+  "detection_method": {
+    "original": "manual",
+    "transcription": "manual",
+    "equal": true
+  },
+  "detection_note": {
+    "original": "Events were selected manually and should be visually verified.",
+    "transcription": "Events were selected manually and should be visually verified.",
+    "equal": true
+  },
+  "jump_height_m": {
+    "original": 0.21289062500000003,
+    "transcription": 0.21289062500000003,
+    "equal": true
+  },
+  "jump_height_cm": {
+    "original": 21.289062500000004,
+    "transcription": 21.289062500000004,
+    "equal": true
+  },
+  "takeoff_velocity_m_s": {
+    "original": 2.04375,
+    "transcription": 2.04375,
+    "equal": true
+  },
+  "mean_push_force_N": {
+    "original": 1092.0992389112905,
+    "transcription": 1092.0992389112905,
+    "equal": true
+  },
+  "mean_push_velocity_m_s": {
+    "original": 1.021875,
+    "transcription": 1.021875,
+    "equal": true
+  },
+  "mean_push_power_W": {
+    "original": 1115.988909762475,
+    "transcription": 1115.988909762475,
+    "equal": true
+  },
+  "mean_push_power_W_kg": {
+    "original": 16.908922875189017,
+    "transcription": 16.908922875189017,
+    "equal": true
+  },
+  "assumed_gravity_m_s2": {
+    "original": 9.81,
+    "transcription": 9.81,
+    "equal": true
+  },
+  "body_mass_kg": {
+    "original": 66.0,
+    "transcription": 66.0,
+    "equal": true
+  },
+  "push_off_distance_cm": {
+    "original": 31.0,
+    "transcription": 31.0,
+    "equal": true
+  },
+  "analysis_status": {
+    "original": "OK_WITH_MANUAL_EVENTS",
+    "transcription": "OK_WITH_MANUAL_EVENTS",
+    "equal": true
+  },
+  "annotated_video": {
+    "original": "jump_data/jump_20261014_035847/annotated_review.mp4",
+    "transcription": "jump_data/jump_20261014_035847/annotated_review.mp4",
+    "equal": true
+  }
+}

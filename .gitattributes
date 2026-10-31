@@ -1,0 +1,5 @@
+# Preserve bytes and provenance hashes across platforms for original sources.
+/1stProject-SquatJump/jump_data/** -text
+/2ndProject-ECGAnalyzer/data/** -text
+/2ndProject-ECGAnalyzer/legacy/*.py -text
+/evidence/** -text

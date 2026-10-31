@@ -1,0 +1,212 @@
+[
+  {
+    "session": "jump_20261014_035847",
+    "frames": 336,
+    "timestamps": 338,
+    "count_difference": 2,
+    "strictly_increasing": true,
+    "callback_indices_sequential": true,
+    "dimensions": [
+      640,
+      480
+    ],
+    "result_frame_count_matches": true,
+    "max_scalar_error": 0.0,
+    "corrected_timing": {
+      "takeoff_frame_index": 172,
+      "landing_frame_index": 197,
+      "takeoff_video_time_s": 2.8666666666666667,
+      "landing_video_time_s": 3.283333333333333,
+      "flight_time_s": 0.4166666666666667,
+      "timestamp_source": "nominal_frame_rate_fallback",
+      "timestamp_fallback_reason": "timestamp_frame_count_mismatch",
+      "timestamp_samples": 338,
+      "timestamp_alignment": "unverified_physical_alignment",
+      "timestamp_alignment_note": "Count, finite values and monotonicity are software checks only; sensor-to-encoded-frame alignment is not independently established.",
+      "video_time_source": "nominal_frame_rate",
+      "frames_decoded": 336
+    },
+    "csv_matches_json": true,
+    "h264_remux_payload_identical": false
+  },
+  {
+    "session": "jump_20261014_044047",
+    "frames": 184,
+    "timestamps": 187,
+    "count_difference": 3,
+    "strictly_increasing": true,
+    "callback_indices_sequential": true,
+    "dimensions": [
+      640,
+      480
+    ],
+    "result_frame_count_matches": true,
+    "max_scalar_error": 0.0,
+    "corrected_timing": {
+      "takeoff_frame_index": 82,
+      "landing_frame_index": 101,
+      "takeoff_video_time_s": 1.3666666666666667,
+      "landing_video_time_s": 1.6833333333333333,
+      "flight_time_s": 0.31666666666666665,
+      "timestamp_source": "nominal_frame_rate_fallback",
+      "timestamp_fallback_reason": "timestamp_frame_count_mismatch",
+      "timestamp_samples": 187,
+      "timestamp_alignment": "unverified_physical_alignment",
+      "timestamp_alignment_note": "Count, finite values and monotonicity are software checks only; sensor-to-encoded-frame alignment is not independently established.",
+      "video_time_source": "nominal_frame_rate",
+      "frames_decoded": 184
+    },
+    "csv_matches_json": true,
+    "h264_remux_payload_identical": false
+  },
+  {
+    "session": "jump_20261014_044853",
+    "frames": 340,
+    "timestamps": 343,
+    "count_difference": 3,
+    "strictly_increasing": true,
+    "callback_indices_sequential": true,
+    "dimensions": [
+      640,
+      480
+    ],
+    "result_frame_count_matches": true,
+    "max_scalar_error": 0.0,
+    "corrected_timing": {
+      "takeoff_frame_index": 193,
+      "landing_frame_index": 250,
+      "takeoff_video_time_s": 3.216666666666667,
+      "landing_video_time_s": 4.166666666666667,
+      "flight_time_s": 0.95,
+      "timestamp_source": "nominal_frame_rate_fallback",
+      "timestamp_fallback_reason": "timestamp_frame_count_mismatch",
+      "timestamp_samples": 343,
+      "timestamp_alignment": "unverified_physical_alignment",
+      "timestamp_alignment_note": "Count, finite values and monotonicity are software checks only; sensor-to-encoded-frame alignment is not independently established.",
+      "video_time_source": "nominal_frame_rate",
+      "frames_decoded": 340
+    },
+    "csv_matches_json": true,
+    "h264_remux_payload_identical": false
+  },
+  {
+    "session": "jump_20261014_045210",
+    "frames": 165,
+    "timestamps": 169,
+    "count_difference": 4,
+    "strictly_increasing": true,
+    "callback_indices_sequential": true,
+    "dimensions": [
+      640,
+      480
+    ],
+    "result_frame_count_matches": true,
+    "max_scalar_error": 0.0,
+    "corrected_timing": {
+      "takeoff_frame_index": 20,
+      "landing_frame_index": 45,
+      "takeoff_video_time_s": 0.3333333333333333,
+      "landing_video_time_s": 0.75,
+      "flight_time_s": 0.4166666666666667,
+      "timestamp_source": "nominal_frame_rate_fallback",
+      "timestamp_fallback_reason": "timestamp_frame_count_mismatch",
+      "timestamp_samples": 169,
+      "timestamp_alignment": "unverified_physical_alignment",
+      "timestamp_alignment_note": "Count, finite values and monotonicity are software checks only; sensor-to-encoded-frame alignment is not independently established.",
+      "video_time_source": "nominal_frame_rate",
+      "frames_decoded": 165
+    },
+    "csv_matches_json": true,
+    "h264_remux_payload_identical": false
+  },
+  {
+    "session": "jump_20261014_051434",
+    "frames": 161,
+    "timestamps": 165,
+    "count_difference": 4,
+    "strictly_increasing": true,
+    "callback_indices_sequential": true,
+    "dimensions": [
+      640,
+      480
+    ],
+    "result_frame_count_matches": true,
+    "max_scalar_error": 0.0,
+    "corrected_timing": {
+      "takeoff_frame_index": 91,
+      "landing_frame_index": 124,
+      "takeoff_video_time_s": 1.5166666666666666,
+      "landing_video_time_s": 2.066666666666667,
+      "flight_time_s": 0.55,
+      "timestamp_source": "nominal_frame_rate_fallback",
+      "timestamp_fallback_reason": "timestamp_frame_count_mismatch",
+      "timestamp_samples": 165,
+      "timestamp_alignment": "unverified_physical_alignment",
+      "timestamp_alignment_note": "Count, finite values and monotonicity are software checks only; sensor-to-encoded-frame alignment is not independently established.",
+      "video_time_source": "nominal_frame_rate",
+      "frames_decoded": 161
+    },
+    "csv_matches_json": true,
+    "h264_remux_payload_identical": false
+  },
+  {
+    "session": "jump_20261014_052005",
+    "frames": 258,
+    "timestamps": 261,
+    "count_difference": 3,
+    "strictly_increasing": true,
+    "callback_indices_sequential": true,
+    "dimensions": [
+      640,
+      480
+    ],
+    "result_frame_count_matches": true,
+    "max_scalar_error": 0.0,
+    "corrected_timing": {
+      "takeoff_frame_index": 197,
+      "landing_frame_index": 227,
+      "takeoff_video_time_s": 3.283333333333333,
+      "landing_video_time_s": 3.783333333333333,
+      "flight_time_s": 0.5,
+      "timestamp_source": "nominal_frame_rate_fallback",
+      "timestamp_fallback_reason": "timestamp_frame_count_mismatch",
+      "timestamp_samples": 261,
+      "timestamp_alignment": "unverified_physical_alignment",
+      "timestamp_alignment_note": "Count, finite values and monotonicity are software checks only; sensor-to-encoded-frame alignment is not independently established.",
+      "video_time_source": "nominal_frame_rate",
+      "frames_decoded": 258
+    },
+    "csv_matches_json": true,
+    "h264_remux_payload_identical": false
+  },
+  {
+    "session": "jump_20261014_052459",
+    "frames": 124,
+    "timestamps": 127,
+    "count_difference": 3,
+    "strictly_increasing": true,
+    "callback_indices_sequential": true,
+    "dimensions": [
+      640,
+      480
+    ],
+    "result_frame_count_matches": true,
+    "max_scalar_error": 0.0,
+    "corrected_timing": {
+      "takeoff_frame_index": 66,
+      "landing_frame_index": 98,
+      "takeoff_video_time_s": 1.1,
+      "landing_video_time_s": 1.6333333333333333,
+      "flight_time_s": 0.5333333333333333,
+      "timestamp_source": "nominal_frame_rate_fallback",
+      "timestamp_fallback_reason": "timestamp_frame_count_mismatch",
+      "timestamp_samples": 127,
+      "timestamp_alignment": "unverified_physical_alignment",
+      "timestamp_alignment_note": "Count, finite values and monotonicity are software checks only; sensor-to-encoded-frame alignment is not independently established.",
+      "video_time_source": "nominal_frame_rate",
+      "frames_decoded": 124
+    },
+    "csv_matches_json": true,
+    "h264_remux_payload_identical": false
+  }
+]

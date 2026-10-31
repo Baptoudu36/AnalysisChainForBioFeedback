@@ -1,0 +1,42 @@
+metric,historical,current,delta,tolerance,matches
+adc.bits,10,10,0,1e-09,True
+adc.code_max,700,700,0,1e-09,True
+adc.code_min,171,171,0,1e-09,True
+adc.lsb_mv,3.22265625,3.22265625,0.0,1e-09,True
+adc.near_rail_fraction,0.0,0.0,0.0,1e-09,True
+adc.peak_to_peak_v,1.7064516128,1.7064516128,0.0,1e-09,True
+adc.used_range_fraction,0.5171065493646139,0.5171065493646139,0.0,1e-09,True
+adc.vref_v,3.3,3.3,0.0,1e-09,True
+hrv_time_domain.max_hr_bpm,78.53200147592547,78.53200147592547,0.0,1e-09,True
+hrv_time_domain.mean_hr_bpm,73.05580527069193,73.05580527069193,0.0,1e-09,True
+hrv_time_domain.mean_rr_ms,821.2899683698431,821.2899683698431,0.0,1e-09,True
+hrv_time_domain.min_hr_bpm,69.33967182339664,69.33967182339664,0.0,1e-09,True
+hrv_time_domain.n_rr,10,10,0,1e-09,True
+hrv_time_domain.note,Ultra-short window (~10 s). Standard HRV reporting needs at least 5 min; values are illustrative of the pipeline only.,Ultra-short window (~10 s). Standard HRV reporting needs at least 5 min; values are illustrative of the pipeline only.,,,True
+hrv_time_domain.rmssd_ms,37.32055221231767,37.32055221231767,0.0,1e-09,True
+hrv_time_domain.sdnn_ms,31.51729987597309,31.51729987597309,0.0,1e-09,True
+run,run_20260916T104943Z_mcp3008,run_20260916T104943Z_mcp3008,,,True
+script_version,1.2.0,1.2.0,,,True
+spectrum.band_power_fractions.0-0.5 Hz,0.005112371666039233,0.005112371666039237,3.469446951953614e-18,1e-09,True
+spectrum.band_power_fractions.0.5-5 Hz,0.43867897971931274,0.43867897971931274,0.0,1e-09,True
+spectrum.band_power_fractions.100-400 Hz,0.0009769218087607174,0.0009769218087607168,-6.505213034913027e-19,1e-09,True
+spectrum.band_power_fractions.15-40 Hz,0.11672171035083494,0.11672171035083495,1.3877787807814457e-17,1e-09,True
+spectrum.band_power_fractions.45-55 Hz,0.20856366806486124,0.20856366806486126,2.7755575615628914e-17,1e-09,True
+spectrum.band_power_fractions.5-15 Hz,0.22719596685891502,0.22719596685891505,2.7755575615628914e-17,1e-09,True
+spectrum.band_power_fractions.55-100 Hz,0.0022344546233487726,0.002234454623348774,1.3010426069826053e-18,1e-09,True
+spectrum.ecg_band_power_fraction,0.7825966569290628,0.7825966569290628,0.0,1e-09,True
+spectrum.fundamental_hz_below_3hz,1.1714612524851071,1.1714612524851071,0.0,1e-09,True
+spectrum.mains_peak_hz,49.9823467726979,49.9823467726979,0.0,1e-09,True
+spectrum.rms_bandpassed_v,0.213408853749692,0.21340885374969035,-1.6653345369377348e-15,1e-09,True
+spectrum.rms_removed_by_50hz_notch_v,0.015063878975825359,0.015063878975825205,-1.5439038936193583e-16,1e-09,True
+timestamp_kind,monotonic midpoint of SPI transaction; software estimate,monotonic midpoint of SPI transaction; software estimate,,,True
+timing.max_interval_ms,2.9683330000001007,2.9683330000001007,0.0,1e-09,True
+timing.measured_fs_hz,799.7175483631663,799.7175483631663,0.0,1e-09,True
+timing.median_interval_ms,1.2499740000002646,1.2499740000002646,0.0,1e-09,True
+timing.min_interval_ms,0.6019010000000158,0.6019010000000158,0.0,1e-09,True
+timing.missed_schedule_slots,3,3,0,1e-09,True
+timing.nyquist_hz,399.85877418158316,399.85877418158316,0.0,1e-09,True
+timing.p95_abs_deviation_fraction,0.008443375622518788,0.008443375622518788,0.0,1e-09,True
+timing.samples,7997,7997,0,1e-09,True
+timing.span_s,9.998530126500201,9.998530126500201,0.0,1e-09,True
+timing.target_fs_hz,800.0,800.0,0.0,1e-09,True

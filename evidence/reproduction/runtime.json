@@ -1,0 +1,28 @@
+{
+  "platform": "Windows-10-10.0.26200-SP0",
+  "python": "3.10.20 | packaged by Anaconda, Inc. | (main, Mar 11 2026, 17:42:35) [MSC v.1942 64 bit (AMD64)]",
+  "modules": {
+    "numpy": {
+      "version": "2.2.6"
+    },
+    "scipy": {
+      "version": "1.15.3"
+    },
+    "sklearn": {
+      "version": "1.7.2"
+    },
+    "cv2": {
+      "version": "4.11.0"
+    },
+    "matplotlib": {
+      "version": "3.10.8"
+    },
+    "joblib": {
+      "version": "1.5.2"
+    },
+    "threadpoolctl": {
+      "version": "3.6.0"
+    }
+  },
+  "note": "Export of executed environment versions. Host-specific paths omitted; original record retained in course workspace."
+}

@@ -1,0 +1,510 @@
+{
+  "completed": true,
+  "tests": [
+    {
+      "name": "20_references",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "reference_mean",
+      "passed": true,
+      "detail": {
+        "mean": 24.03264223125,
+        "sd": 2.4544940861477618
+      }
+    },
+    {
+      "name": "thumbnail_0",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "thumbnail_1",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "thumbnail_2",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "score_0",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "thumbnail_3",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "thumbnail_4",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "thumbnail_5",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "score_1",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "thumbnail_6",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "thumbnail_7",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "thumbnail_8",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "score_2",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "thumbnail_9",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "thumbnail_10",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "thumbnail_11",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "score_3",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "thumbnail_12",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "thumbnail_13",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "thumbnail_14",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "score_4",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "thumbnail_15",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "thumbnail_16",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "thumbnail_17",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "score_5",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "thumbnail_18",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "thumbnail_19",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "thumbnail_20",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "score_6",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "thumbnail_21",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "thumbnail_22",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "thumbnail_23",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "score_7",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "thumbnail_24",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "thumbnail_25",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "thumbnail_26",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "score_8",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "thumbnail_27",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "thumbnail_28",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "thumbnail_29",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "score_9",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "thumbnail_30",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "thumbnail_31",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "thumbnail_32",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "score_10",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "thumbnail_33",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "thumbnail_34",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "thumbnail_35",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "score_11",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "thumbnail_36",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "thumbnail_37",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "thumbnail_38",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "score_12",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "thumbnail_39",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "thumbnail_40",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "thumbnail_41",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "score_13",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "thumbnail_42",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "thumbnail_43",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "thumbnail_44",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "score_14",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "thumbnail_45",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "thumbnail_46",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "thumbnail_47",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "score_15",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "thumbnail_48",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "thumbnail_49",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "thumbnail_50",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "score_16",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "thumbnail_51",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "thumbnail_52",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "thumbnail_53",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "score_17",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "thumbnail_54",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "thumbnail_55",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "thumbnail_56",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "score_18",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "thumbnail_57",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "thumbnail_58",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "thumbnail_59",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "score_19",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "60_thumbnails",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "mass_height_unchanged",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "distance_power_changed",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "invalid_mass_",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "invalid_mass_-1",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "invalid_mass_0",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "invalid_mass_1000000",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "transcribed_provenance",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "reference_not_changed_by_import",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "reject_negative_mass",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "reject_string_time",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "reject_overflow_time",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "reject_reversed_frames",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "reject_pending",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "session_inputs_separate",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "reported_review_not_independent",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "original_record_preserved",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "reset",
+      "passed": true,
+      "detail": {}
+    }
+  ],
+  "passed": 100,
+  "failed": 0
+}

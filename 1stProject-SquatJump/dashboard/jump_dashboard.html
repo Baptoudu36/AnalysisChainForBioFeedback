@@ -34,7 +34,7 @@ h2{font-size:17px;margin:0 0 2px}
 .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px;margin-bottom:16px}
 .card-head{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap;margin-bottom:12px}
 .card-head p{margin:0;color:var(--ink-2);font-size:13px}
-.grid{display:grid;gap:16px}
+.grid{display:grid;gap:16px;min-width:0}.grid>*{min-width:0}
 .g2{grid-template-columns:1.6fr 1fr}
 @media (max-width:860px){.g2{grid-template-columns:1fr}}
 .inputs{display:flex;flex-wrap:wrap;gap:18px;align-items:flex-end}
@@ -65,7 +65,7 @@ tbody tr{cursor:pointer}
 .frames{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0}
 .frames figure{margin:0}.frames img{width:100%;border-radius:8px;display:block;border:1px solid var(--line)}
 .frames figcaption{font-size:11px;color:var(--ink-2);text-align:center;margin-top:3px}
-.formula{font-family:var(--mono);font-size:12.5px;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;line-height:1.8}
+.formula{font-family:var(--mono);font-size:12.5px;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;line-height:1.8;overflow-wrap:anywhere}
 .warn{background:var(--warn-soft);border:1px solid color-mix(in srgb,var(--warn) 30%,transparent);color:var(--ink);border-radius:var(--radius);padding:12px 16px;margin-bottom:16px;font-size:13px}
 .warn b{color:var(--warn)}
 button{font:inherit;font-weight:600;font-size:13px;padding:8px 12px;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
@@ -82,8 +82,8 @@ footer{color:var(--muted);font-size:12px;margin-top:20px}
 </header>
 <main>
   <div class="eyebrow">Video-based jump analysis · Raspberry Pi 3B+ · Camera V2.1 · 60 fps</div>
-  <h1>Squat-jump performance dashboard</h1>
-  <p class="sub">Twenty squat jumps by the same participant, filmed by the Raspberry Pi camera. Take-off and landing frames were annotated by hand; flight time gives jump height, force and power through the ballistic model used on the Pi (<code>mechanics.py</code>). The lower panels show how the automatic detector performs on videos it was not trained on.</p>
+  <h1>Jump performance dashboard</h1>
+  <p class="sub">Twenty CMJs by Joël, hands on hips, according to Victor’s 21 October account; recorded with the Raspberry Pi camera. Take-off and landing frames were annotated by hand; flight time estimates height; force and power additionally depend on unverified push-off assumptions in the model used on the Pi (<code>mechanics.py</code>). The lower panels show how the automatic detector performs on videos it was not trained on.</p>
 
   <section class="card">
     <div class="card-head"><div><h2>Participant inputs</h2><p>Same inputs as the Pi program. Changing them recomputes force and power instantly.</p></div>
@@ -94,9 +94,10 @@ footer{color:var(--muted);font-size:12px;margin-top:20px}
       <div class="field"><label for="results">Add a Pi session (results.json)</label><input id="results" type="file" accept=".json,application/json" style="width:240px"></div>
       <button id="reset">Reset</button>
     </div>
-    <p class="note" style="margin:10px 0 0">Defaults come from the 14 Oct 2026 demo (66 kg, 31 cm). Push-off distance is assumed identical for every trial.</p>
+    <p class="note" style="margin:10px 0 0">Defaults come from the 14 Oct 2026 demo (66 kg, 31 cm). The anatomical definition and measurement method of 31 cm remain uncertain. It is a push-off-distance parameter, not jump height. Force and power are conditional estimates.</p>
   </section>
 
+  <p id="input-status" role="alert" class="warn" hidden></p>
   <div class="kpis" id="kpis"></div>
 
   <div class="grid g2">
@@ -107,6 +108,8 @@ footer{color:var(--muted);font-size:12px;margin-top:20px}
     </section>
     <section class="card">
       <div class="card-head"><div><h2>Selected trial</h2><p id="trial-sub">Click a bar or a row.</p></div><span class="pill" id="trial-zone"></span></div>
+      <p class="note" id="session-provenance"></p>
+      <details id="session-record" hidden><summary>Original imported record (preserved)</summary><pre id="session-json" style="white-space:pre-wrap;overflow-wrap:anywhere"></pre></details>
       <div class="frames" id="frames"></div>
       <div class="metrics" id="trial-metrics"></div>
     </section>
@@ -125,7 +128,7 @@ footer{color:var(--muted);font-size:12px;margin-top:20px}
       <div class="scroll"><table id="table"></table></div>
     </section>
     <section class="card">
-      <div class="card-head"><div><h2>Automatic detector — validation</h2><p>Leave-one-video-out: 20 models, each tested on the one video it never saw.</p></div></div>
+      <div class="card-head"><div><h2>Automatic detector — historical LOVO</h2><p>Leave-one-video-out: 20 models, each tested on the one video it never saw.</p></div></div>
       <div class="metrics" id="lovo"></div>
       <p class="note" id="lovo-note" style="margin-top:10px"></p>
     </section>
@@ -155,7 +158,7 @@ const G = 9.81;
 const S = DATA.summary;
 const state = {mass: S.inputs.mass_kg, push: S.inputs.push_off_distance_m * 100, sel: 0, extra: []};
 const $ = id => document.getElementById(id);
-const fmt = (x, d = 1) => (x == null || x === "" || Number.isNaN(+x)) ? "—" : (+x).toFixed(d);
+const fmt = (x, d = 1) => (x == null || x === "" || !Number.isFinite(+x)) ? "—" : (+x).toFixed(d);
 const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
 
 function mech(T, m, dCm) {
@@ -179,7 +182,7 @@ function zoneOf(h, st) {
 }
 
 function render() {
-  const all = trials().map(t => ({...t, ...mech(t.T, state.mass, state.push)}));
+  const all = trials().map(t => ({...t, ...mech(t.T, t.source === "session" ? t.mass : state.mass, t.source === "session" ? t.push : state.push)}));
   const ref = all.filter(t => t.source === "annotated");
   const sh = stats(ref.map(t => t.h)), sp = stats(ref.map(t => t.Pkg)), sT = stats(ref.map(t => t.T)), sF = stats(ref.map(t => t.F));
   const best = ref.reduce((a, b) => b.h > a.h ? b : a);
@@ -199,9 +202,9 @@ function render() {
   drawLovo();
   $("assumptions").innerHTML = `<ul style="margin:0;padding-left:18px">
     <li>Vertical ballistic flight, negligible air resistance, same centre-of-mass height at take-off and landing.</li>
-    <li>Push-off starts from rest with constant acceleration (gives v̄ = v<sub>0</sub>/2).</li>
+    <li>For the declared CMJ, force assumes the upward phase starts with zero COM velocity; constant acceleration is additionally needed for v̄ = v<sub>0</sub>/2. The 31 cm parameter is not established as that upward COM displacement.</li>
     <li>Force and power depend strongly on the typed push-off distance (${fmt(state.push)} cm here).</li>
-    <li>Timing resolution: 1 frame = ${fmt(frameMs)} ms, i.e. ≈ ${fmt(dh)} cm of jump height at T = ${fmt(sT.m * 1000, 0)} ms. Differences between trials smaller than this cannot be resolved.</li>
+    <li>Timing resolution: 1 frame = ${fmt(frameMs)} ms, i.e. ≈ ${fmt(dh)} cm of jump height at T = ${fmt(sT.m * 1000, 0)} ms. This is nominal-frame sensitivity, not a calibrated uncertainty or discrimination threshold.</li>
     <li>Mean force ${fmt(sF.m, 0)} N (${fmt(sF.m / (state.mass * G), 2)} × body weight).</li></ul>`;
 }
 
@@ -247,7 +250,12 @@ function drawTrial(all, sh) {
   $("trial-zone").className = "pill " + zc; $("trial-zone").textContent = zl;
   $("trial-sub").textContent = t.source === "annotated"
     ? `${t.label} · take-off frame ${t.takeoff}, landing frame ${t.landing} (${t.frames} frames)`
-    : `${t.label} · imported Pi session (${t.method || "unknown"} events)`;
+    : `${t.label} · imported session · review: ${t.reviewStatus}`;
+  $("session-provenance").textContent = t.source === "annotated"
+    ? "Dataset annotated reference · MP4 PTS · not a newly confirmed automatic detection. The distribution uses these 20 references only."
+    : `File: ${t.filename}. ${t.note || "Original acquisition provenance not supplied."} Timing: ${t.timestampSource}. Imported analysis status: ${t.analysisStatus}. No review is performed by importing. Session mass ${t.mass} kg / distance ${t.push} cm remain separate from the dataset controls. 31 cm measurement definition remains uncertain.`;
+  $("session-record").hidden = t.source !== "session";
+  $("session-json").textContent = t.original ? JSON.stringify(t.original,null,2) : "";
   const thumbs = (DATA.thumbs || {})[t.id];
   $("frames").innerHTML = thumbs ? thumbs.map(([cap, src]) => `<figure><img alt="${cap}" src="${src}"><figcaption>${cap}</figcaption></figure>`).join("") : "";
   $("trial-metrics").innerHTML = [
@@ -279,15 +287,15 @@ function drawScore(all) {
   s += `<text x="${(m.l + W - m.r) / 2}" y="${H}" text-anchor="middle">Frame index</text>`;
   svg.innerHTML = s;
   $("score-note").textContent = !r ? "" : r.status === "accepted"
-    ? `Accepted automatically · take-off error ${r.takeoff_error_frames} frame(s), landing error ${r.landing_error_frames} frame(s) → flight-time error ${fmt(r.flight_time_error_ms, 1)} ms, height error ${fmt(r.height_error_cm, 2)} cm. Frame-level accuracy on this video's annotated frames: ${fmt(r.annotated_frame_accuracy * 100, 0)} %.`
-    : `Rejected → the Pi program would open the manual review window. Reason: ${r.message} Frame-level accuracy on annotated frames: ${fmt(r.annotated_frame_accuracy * 100, 0)} %.`;
+    ? `Historical automatic proposal (not confirmed here) · take-off error ${r.takeoff_error_frames} frame(s), landing error ${r.landing_error_frames} frame(s) → flight-time error ${fmt(r.flight_time_error_ms, 1)} ms, height error ${fmt(r.height_error_cm, 2)} cm. Frame-level accuracy on this video's annotated frames: ${fmt(r.annotated_frame_accuracy * 100, 0)} %.`
+    : `Historical rejection; current analysis requires explicit review for every proposal. Reason: ${r.message} Frame-level accuracy on annotated frames: ${fmt(r.annotated_frame_accuracy * 100, 0)} %.`;
 }
 
 function drawLovo() {
   const d = S.detector_lovo;
   const cells = [
-    ["Accepted automatically", `${d.accepted_automatically} / ${d.videos}`],
-    ["Sent to manual review", `${d.rejected_to_manual_review} / ${d.videos}`],
+    ["Historically accepted automatically", `${d.accepted_automatically} / ${d.videos}`],
+    ["Historical rejection to review", `${d.rejected_to_manual_review} / ${d.videos}`],
     ["Both events exact", `${d.both_events_exact} / ${d.accepted_automatically}`],
     ["Both events within ±1 frame", `${d.both_events_within_1_frame} / ${d.accepted_automatically}`],
     ["Both events within ±2 frames", `${d.both_events_within_2_frames} / ${d.accepted_automatically}`],
@@ -298,27 +306,49 @@ function drawLovo() {
     ["Max |height error|", d.height_error_cm ? fmt(d.height_error_cm.max_abs, 1) + " cm" : "—"],
   ];
   $("lovo").innerHTML = cells.map(([l, v]) => `<div class="metric"><div class="l">${l}</div><div class="v">${v}</div></div>`).join("");
-  $("lovo-note").textContent = "Table badges: Δ take-off/landing error in frames (green exact, blue ±1, amber larger). All 20 videos were filmed in the same room, light and camera position: these figures describe within-setting generalisation only, not robustness to new environments.";
+  $("lovo-note").textContent = "Saved historical LOVO, not the 21 October rerun (9/20 within ±1, wrong sequences in jump_07 and jump_20). Current code requires manual review for every proposal; margins are not probabilities. Table badges: Δ take-off/landing error in frames (green exact, blue ±1, amber larger). All 20 videos were filmed in the same room, light and camera position: these figures describe within-setting generalisation only, not robustness to new environments.";
 }
 
 $("mass").value = state.mass; $("push").value = state.push;
-$("mass").addEventListener("input", e => { const v = +e.target.value; if (v > 0) { state.mass = v; render(); } });
-$("push").addEventListener("input", e => { const v = +e.target.value; if (v > 0) { state.push = v; render(); } });
-$("reset").addEventListener("click", () => { state.mass = S.inputs.mass_kg; state.push = S.inputs.push_off_distance_m * 100; state.extra = []; state.sel = 0; $("mass").value = state.mass; $("push").value = state.push; $("results").value = ""; $("session-label").textContent = "Training dataset · 20 trials"; render(); });
+function inputStatus(message) { $("input-status").hidden = !message; $("input-status").textContent = message; }
+function updateInputs() {
+  const mass=Number($("mass").value),push=Number($("push").value);
+  const valid = $("mass").value!=="" && $("push").value!=="" && Number.isFinite(mass) && Number.isFinite(push) && mass>=20 && mass<=200 && push>=5 && push<=80;
+  $("mass").setAttribute("aria-invalid", String(!valid)); $("push").setAttribute("aria-invalid",String(!valid));
+  if(!valid) { inputStatus("Invalid inputs: use mass 20–200 kg and distance 5–80 cm. Displayed estimates retain the last valid inputs; they have not been recalculated."); return; }
+  state.mass=mass;state.push=push;inputStatus("");render();
+}
+$("mass").addEventListener("input",updateInputs);
+$("push").addEventListener("input",updateInputs);
+let importSequence=0;
+$("reset").addEventListener("click", () => { ++importSequence; state.mass=S.inputs.mass_kg;state.push=S.inputs.push_off_distance_m*100;state.extra=[];state.sel=0;$("mass").value=state.mass;$("push").value=state.push;$("results").value="";$("session-label").textContent="Dataset reference · 20 trials";updateInputs(); });
+function validateSession(r) {
+  if(!r || typeof r!=="object" || Array.isArray(r))throw new Error("Expected a result object");
+  for(const key of ["flight_time_s","body_mass_kg","push_off_distance_cm"])
+    if(typeof r[key]!=="number" || !Number.isFinite(r[key]) || r[key]<=0)throw new Error(key+" must be a finite positive number");
+  if(r.body_mass_kg<20 || r.body_mass_kg>200 || r.push_off_distance_cm<5 || r.push_off_distance_cm>80)throw new Error("Mass/distance outside supported display range (20–200 kg / 5–80 cm)");
+  if(r.flight_time_s>5)throw new Error("Flight time exceeds the dashboard display range (5 s); inspect units");
+  const a=r.takeoff_frame_index,b=r.landing_frame_index;
+  if(!Number.isInteger(a)||!Number.isInteger(b)||a<0||b<=a)throw new Error("Invalid ordered event frame indices");
+  if(r.frames_decoded!==undefined && (!Number.isInteger(r.frames_decoded)||r.frames_decoded<=b))throw new Error("Event index outside decoded frames");
+  if(r.ok===false || ["REVIEW_REQUIRED","OK_WITH_REVIEW_REQUIRED","EVENT_DETECTION_FAILED"].includes(r.analysis_status))throw new Error("Pending/failed analysis has no accepted session metrics; inspect automatic_proposal and complete review first");
+  return r;
+}
 $("results").addEventListener("change", async e => {
-  const f = e.target.files[0]; if (!f) return;
+  const f=e.target.files[0];if(!f)return;const sequence=++importSequence;
   try {
-    const r = JSON.parse(await f.text());
-    if (!(r.flight_time_s > 0)) throw new Error("results.json has no positive flight_time_s");
-    if (r.body_mass_kg) { state.mass = r.body_mass_kg; $("mass").value = state.mass; }
-    if (r.push_off_distance_cm) { state.push = r.push_off_distance_cm; $("push").value = state.push; }
-    state.extra.push({id: "session_" + state.extra.length, label: "S" + (state.extra.length + 1), T: r.flight_time_s,
-      takeoff: r.takeoff_frame_index, landing: r.landing_frame_index, frames: r.landing_frame_index - r.takeoff_frame_index,
-      source: "session", method: r.detection_method});
-    state.sel = trials().length - 1;
-    $("session-label").textContent = `Training dataset + ${state.extra.length} Pi session(s)`;
-    render();
-  } catch (err) { alert("Could not read this file: " + err.message); }
+    const r=validateSession(JSON.parse(await f.text()));if(sequence!==importSequence)return;
+    const explicit=["confirmed","corrected","manually_selected"].includes(r.review_status);
+    state.extra.push({id:"session_"+state.extra.length,label:"S"+(state.extra.length+1),T:r.flight_time_s,
+      takeoff:r.takeoff_frame_index,landing:r.landing_frame_index,frames:r.landing_frame_index-r.takeoff_frame_index,
+      source:"session",method:r.detection_method,mass:r.body_mass_kg,push:r.push_off_distance_cm,
+      filename:f.name,note:r._note,timestampSource:r.timestamp_source||"unspecified",analysisStatus:r.analysis_status||"unspecified",
+      reviewStatus:explicit ? "reported "+r.review_status+" (not independently verified)" : "unverified legacy/imported result",
+      original:r});
+    state.sel=trials().length-1;$("session-label").textContent=`Dataset reference: 20 trials · ${state.extra.length} separate imported session(s)`;
+    inputStatus("");render();updateInputs();
+  } catch(err) { if(sequence===importSequence)inputStatus("Import failed; previous data preserved. "+err.message); }
+  e.target.value="";
 });
 window.addEventListener("resize", render);
 render();

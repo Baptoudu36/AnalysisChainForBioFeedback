@@ -53,20 +53,37 @@ def read_timestamps(path):
             v = row.get("sensor_timestamp_ns", "")
             try:
                 values.append(int(v))
-            except (ValueError, TypeError):
+            except (ValueError, TypeError, OverflowError):
                 values.append(None)
     return values
 
 
 def _event_timing(takeoff_idx, landing_idx, frame_count, timestamp_path, config):
-    """Calculate event timing using sensor timestamps when they align."""
-    timestamps = read_timestamps(timestamp_path)
+    """Validate the entire sidecar; matching counts do not prove physical alignment."""
+    if (not isinstance(frame_count, (int, np.integer)) or frame_count < 2
+            or not isinstance(takeoff_idx, (int, np.integer))
+            or not isinstance(landing_idx, (int, np.integer))
+            or not 0 <= takeoff_idx < landing_idx < frame_count):
+        return None
+    try:
+        fps = float(config["expected_fps"])
+    except (KeyError, ValueError, TypeError):
+        return None
+    if not np.isfinite(fps) or fps <= 0:
+        return None
+    try:
+        timestamps = read_timestamps(timestamp_path)
+        reason = ("timestamps_missing_or_empty" if not timestamps else
+                  "timestamp_frame_count_mismatch" if len(timestamps) != frame_count else
+                  "timestamp_invalid_or_nonfinite" if any(t is None for t in timestamps) else
+                  "timestamps_not_strictly_increasing" if any(b <= a for a, b in zip(timestamps, timestamps[1:])) else None)
+    except (OSError, csv.Error, UnicodeError):
+        timestamps, reason = [], "timestamps_unreadable"
     timestamp_source = "nominal_frame_rate_fallback"
-    if len(timestamps) == frame_count and all(t is not None for t in timestamps):
+    if reason is None:
         flight_time = (timestamps[landing_idx] - timestamps[takeoff_idx]) / 1e9
         timestamp_source = "sensor_timestamp_ns"
     else:
-        fps = float(config["expected_fps"])
         flight_time = (landing_idx - takeoff_idx) / fps
     if not np.isfinite(flight_time) or flight_time <= 0:
         return None
@@ -78,11 +95,16 @@ def _event_timing(takeoff_idx, landing_idx, frame_count, timestamp_path, config)
         "landing_video_time_s": float(landing_idx / fps),
         "flight_time_s": float(flight_time),
         "timestamp_source": timestamp_source,
+        "timestamp_fallback_reason": reason,
+        "timestamp_samples": len(timestamps),
+        "timestamp_alignment": "unverified_physical_alignment",
+        "timestamp_alignment_note": "Count, finite values and monotonicity are software checks only; sensor-to-encoded-frame alignment is not independently established.",
+        "video_time_source": "nominal_frame_rate",
         "frames_decoded": int(frame_count),
     }
 
 
-def select_manual_events(video_path, timestamp_path, config):
+def select_manual_events(video_path, timestamp_path, config, proposal=None):
     """Let an operator mark take-off and landing in an OpenCV review window."""
     cap = cv2.VideoCapture(video_path)
     if not cap.isOpened():
@@ -94,14 +116,22 @@ def select_manual_events(video_path, timestamp_path, config):
         return {"ok": False, "message": "Video is too short for manual event selection."}
 
     window = "Manual jump event review"
-    state = {"index": 0, "takeoff": None, "landing": None, "accept": False, "cancel": False}
+    proposal = proposal or {}
+    state = {"index": proposal.get("takeoff_frame_index", 0),
+             "takeoff": proposal.get("takeoff_frame_index"),
+             "landing": proposal.get("landing_frame_index"), "accept": False, "cancel": False}
     button_positions = []
-    cv2.namedWindow(window, cv2.WINDOW_AUTOSIZE)
+    try:
+        cv2.namedWindow(window, cv2.WINDOW_AUTOSIZE)
+    except cv2.error:
+        cap.release()
+        raise
 
     def on_frame(value):
         state["index"] = int(value)
 
     cv2.createTrackbar("Frame", window, 0, frame_count - 1, on_frame)
+    cv2.setTrackbarPos("Frame", window, min(frame_count - 1, int(proposal.get("takeoff_frame_index", 0))))
 
     def on_mouse(event, x, y, _flags, _param):
         if event != cv2.EVENT_LBUTTONDOWN:
@@ -192,7 +222,7 @@ def select_manual_events(video_path, timestamp_path, config):
     timing.update({
         "ok": True,
         "detection_method": "manual",
-        "detection_note": "Events were selected manually and should be visually verified.",
+        "detection_note": "Operator explicitly accepted the reviewed event frames; not independent biomechanical validation.",
     })
     return timing
 
@@ -314,12 +344,14 @@ def detect_events(video_path, timestamp_path, config):
     if timing is None:
         return {"ok": False, "message": "Computed flight time is invalid; inspect timestamp alignment."}
 
-    # Neither value is a calibrated probability. The stable margin controls
-    # acceptance; the transition margin is useful for manual review.
+    # Neither value is a calibrated probability. The stable margin selects a
+    # proposal; explicit operator review is required before acceptance.
     transition_margin = float(min(abs(smooth[takeoff_idx]), abs(smooth[landing_idx])))
     timing.update({
         "ok": True,
         "detection_method": "automatic",
+        "review_status": "required",
+        "analysis_status": "REVIEW_REQUIRED",
         "event_score_margin": float(stable_margin),
         "transition_score_margin": transition_margin,
         "detection_note": (
@@ -327,4 +359,28 @@ def detect_events(video_path, timestamp_path, config):
             "the annotated take-off and landing frames before accepting the result."
         ),
     })
+    return timing
+
+
+def review_events(video_path, timestamp_path, config, proposal, reviewer=None):
+    """Keep automatic evidence separate from an explicit human review decision."""
+    reviewer = reviewer or select_manual_events
+    try:
+        reviewed = reviewer(video_path, timestamp_path, config, proposal=proposal if proposal.get("ok") else None)
+    except cv2.error as exc:
+        reviewed = {"ok": False, "message": "Manual review UI unavailable: " + str(exc)}
+    if not reviewed.get("ok"):
+        return {"ok": False, "analysis_status": "REVIEW_REQUIRED", "review_status": "pending",
+                "automatic_proposal": dict(proposal), "review_message": reviewed.get("message", "Review not completed")}
+    timing = _event_timing(reviewed.get("takeoff_frame_index"), reviewed.get("landing_frame_index"),
+                           reviewed.get("frames_decoded"), timestamp_path, config)
+    if timing is None:
+        return {"ok": False, "analysis_status": "REVIEW_REQUIRED", "review_status": "pending",
+                "automatic_proposal": dict(proposal), "review_message": "Invalid reviewed event indices or timing"}
+    same = proposal.get("ok") and all(timing[k] == proposal.get(k) for k in ("takeoff_frame_index", "landing_frame_index"))
+    status = "confirmed" if same else "corrected" if proposal.get("ok") else "manually_selected"
+    timing.update(ok=True, detection_method="manual", review_status=status,
+                  analysis_status="OK_WITH_REVIEWED_EVENTS", automatic_proposal=dict(proposal),
+                  confirmed_events={k: timing[k] for k in ("takeoff_frame_index", "landing_frame_index", "flight_time_s")},
+                  review_note="Explicit operator acceptance; not independent physical validation.")
     return timing

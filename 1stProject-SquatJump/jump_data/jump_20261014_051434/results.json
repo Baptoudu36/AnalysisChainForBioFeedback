@@ -1,0 +1,32 @@
+{
+  "takeoff_frame_index": 91,
+  "landing_frame_index": 124,
+  "takeoff_video_time_s": 1.5166666666666666,
+  "landing_video_time_s": 2.066666666666667,
+  "flight_time_s": 0.55,
+  "timestamp_source": "nominal_frame_rate_fallback",
+  "frames_decoded": 161,
+  "ok": true,
+  "detection_method": "manual",
+  "detection_note": "Events were selected manually and should be visually verified.",
+  "jump_height_m": 0.3709406250000001,
+  "jump_height_cm": 37.09406250000001,
+  "takeoff_velocity_m_s": 2.6977500000000005,
+  "mean_push_force_N": 1616.5548642857145,
+  "mean_push_velocity_m_s": 1.3488750000000003,
+  "mean_push_power_W": 2180.5304425633935,
+  "mean_push_power_W_kg": 27.25663053204242,
+  "assumed_gravity_m_s2": 9.81,
+  "model_assumptions": [
+    "Vertical ballistic flight with negligible air resistance",
+    "COM height at take-off equals COM height at landing",
+    "COM starts push-off from rest",
+    "Constant vertical COM acceleration during push-off for mean velocity",
+    "Mean force estimated using body mass, jump height and push-off distance",
+    "No direct force-plate measurement"
+  ],
+  "body_mass_kg": 80.0,
+  "push_off_distance_cm": 35.0,
+  "analysis_status": "OK_WITH_MANUAL_EVENTS",
+  "annotated_video": "jump_data/jump_20261014_051434/annotated_review.mp4"
+}

@@ -1,0 +1,58 @@
+[
+  {
+    "session": "jump_20261014_035847",
+    "decoded_pixel_hashes": [
+      "SHA256=ffddf2ca4127457be2f0ff1d97d001724626cf6984833a29dec5554be9f213b6",
+      "SHA256=ffddf2ca4127457be2f0ff1d97d001724626cf6984833a29dec5554be9f213b6"
+    ],
+    "equal": true
+  },
+  {
+    "session": "jump_20261014_044047",
+    "decoded_pixel_hashes": [
+      "SHA256=081eaaabd8b98b6392f89fb8225c88680d2ca8f999f97d6bc934a88c5ac711a1",
+      "SHA256=081eaaabd8b98b6392f89fb8225c88680d2ca8f999f97d6bc934a88c5ac711a1"
+    ],
+    "equal": true
+  },
+  {
+    "session": "jump_20261014_044853",
+    "decoded_pixel_hashes": [
+      "SHA256=018c383415025855e9d1f01089700786ddf7a91106d5251cd496e0adc6418a7b",
+      "SHA256=018c383415025855e9d1f01089700786ddf7a91106d5251cd496e0adc6418a7b"
+    ],
+    "equal": true
+  },
+  {
+    "session": "jump_20261014_045210",
+    "decoded_pixel_hashes": [
+      "SHA256=a398a3891ab85b4e203bebbfc3b6e99cd4796d945e13a4d2b845addcdba5ce46",
+      "SHA256=a398a3891ab85b4e203bebbfc3b6e99cd4796d945e13a4d2b845addcdba5ce46"
+    ],
+    "equal": true
+  },
+  {
+    "session": "jump_20261014_051434",
+    "decoded_pixel_hashes": [
+      "SHA256=81299839f158044098833e654aaf9f0f65caffe68fd7814b9818fc28a774bf7b",
+      "SHA256=81299839f158044098833e654aaf9f0f65caffe68fd7814b9818fc28a774bf7b"
+    ],
+    "equal": true
+  },
+  {
+    "session": "jump_20261014_052005",
+    "decoded_pixel_hashes": [
+      "SHA256=c5fddd94cd101fbcdecc8a33309ac4fa75d9fd571716c4beb4f65f6b926b1ec7",
+      "SHA256=c5fddd94cd101fbcdecc8a33309ac4fa75d9fd571716c4beb4f65f6b926b1ec7"
+    ],
+    "equal": true
+  },
+  {
+    "session": "jump_20261014_052459",
+    "decoded_pixel_hashes": [
+      "SHA256=09fad4240bc291773ce31f126f4b3b813b02bc1afaa2b9eb8d7e46fa9f231649",
+      "SHA256=09fad4240bc291773ce31f126f4b3b813b02bc1afaa2b9eb8d7e46fa9f231649"
+    ],
+    "equal": true
+  }
+]

@@ -1,5 +1,5 @@
 {
-  "_note": "Transcribed from the results.csv shown in media/demo_recordings/2026-10-14_SquatJump_demo_on_Pi.mp4 (session jump_20261014_035847). The original file remained on the Raspberry Pi.",
+  "_note": "Transcribed from the results.csv shown in MediaSources/Demo recordings/SquatJump script trial.mp4 (path relative to repository root) (session jump_20261014_035847). The original file remained on the Raspberry Pi.",
   "takeoff_frame_index": 172,
   "landing_frame_index": 197,
   "takeoff_video_time_s": 2.8666666666666667,

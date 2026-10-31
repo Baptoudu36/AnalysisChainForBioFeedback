@@ -1,0 +1,346 @@
+[
+  {
+    "held_out": "training_dataset/jump_02.mp4",
+    "changed_parameter": {
+      "max_iter": 30000
+    },
+    "n_iter": 30000,
+    "seconds": 529.388902425766,
+    "warnings": [
+      {
+        "stage": "LOVO fit jump_02",
+        "category": "ConvergenceWarning",
+        "message": "Liblinear failed to converge, increase the number of iterations.",
+        "filename": "<isolated Python>/site-packages/sklearn/svm/_base.py",
+        "lineno": 1250
+      }
+    ],
+    "events": {
+      "takeoff_frame_index": 159,
+      "landing_frame_index": 187,
+      "takeoff_video_time_s": 2.65,
+      "landing_video_time_s": 3.1166666666666667,
+      "flight_time_s": 0.4666666666666667,
+      "timestamp_source": "nominal_frame_rate_fallback",
+      "frames_decoded": 291,
+      "ok": true,
+      "detection_method": "automatic",
+      "event_score_margin": 2.5499565989706596,
+      "transition_score_margin": 0.46370034818287964,
+      "detection_note": "SVM score margins are not calibrated probabilities. Visually verify the annotated take-off and landing frames before accepting the result."
+    },
+    "fit_method": "same historical StandardScaler + LinearSVC expression in an independent worker"
+  },
+  {
+    "held_out": "training_dataset/jump_03.mp4",
+    "changed_parameter": {
+      "max_iter": 30000
+    },
+    "n_iter": 12165,
+    "seconds": 137.98155522346497,
+    "warnings": [],
+    "events": {
+      "takeoff_frame_index": 117,
+      "landing_frame_index": 151,
+      "takeoff_video_time_s": 1.95,
+      "landing_video_time_s": 2.5166666666666666,
+      "flight_time_s": 0.5666666666666667,
+      "timestamp_source": "nominal_frame_rate_fallback",
+      "frames_decoded": 291,
+      "ok": true,
+      "detection_method": "automatic",
+      "event_score_margin": 0.5769061048355981,
+      "transition_score_margin": 0.07655946216561559,
+      "detection_note": "SVM score margins are not calibrated probabilities. Visually verify the annotated take-off and landing frames before accepting the result."
+    },
+    "fit_method": "same historical StandardScaler + LinearSVC expression in an independent worker"
+  },
+  {
+    "held_out": "training_dataset/jump_06.mp4",
+    "changed_parameter": {
+      "max_iter": 30000
+    },
+    "n_iter": 30000,
+    "seconds": 523.9348533153534,
+    "warnings": [
+      {
+        "stage": "LOVO fit jump_06",
+        "category": "ConvergenceWarning",
+        "message": "Liblinear failed to converge, increase the number of iterations.",
+        "filename": "<isolated Python>/site-packages/sklearn/svm/_base.py",
+        "lineno": 1250
+      }
+    ],
+    "events": {
+      "takeoff_frame_index": 123,
+      "landing_frame_index": 148,
+      "takeoff_video_time_s": 2.05,
+      "landing_video_time_s": 2.466666666666667,
+      "flight_time_s": 0.4166666666666667,
+      "timestamp_source": "nominal_frame_rate_fallback",
+      "frames_decoded": 291,
+      "ok": true,
+      "detection_method": "automatic",
+      "event_score_margin": 2.9743363170333437,
+      "transition_score_margin": 0.04784371158460199,
+      "detection_note": "SVM score margins are not calibrated probabilities. Visually verify the annotated take-off and landing frames before accepting the result."
+    },
+    "fit_method": "same historical StandardScaler + LinearSVC expression in an independent worker"
+  },
+  {
+    "held_out": "training_dataset/jump_09.mp4",
+    "changed_parameter": {
+      "max_iter": 30000
+    },
+    "n_iter": 15015,
+    "seconds": 221.46480298042297,
+    "warnings": [],
+    "events": {
+      "takeoff_frame_index": 126,
+      "landing_frame_index": 157,
+      "takeoff_video_time_s": 2.1,
+      "landing_video_time_s": 2.6166666666666667,
+      "flight_time_s": 0.5166666666666667,
+      "timestamp_source": "nominal_frame_rate_fallback",
+      "frames_decoded": 291,
+      "ok": true,
+      "detection_method": "automatic",
+      "event_score_margin": 1.1469730204243218,
+      "transition_score_margin": 0.36463944377512414,
+      "detection_note": "SVM score margins are not calibrated probabilities. Visually verify the annotated take-off and landing frames before accepting the result."
+    },
+    "fit_method": "same historical StandardScaler + LinearSVC expression in an independent worker"
+  },
+  {
+    "held_out": "training_dataset/jump_12.mp4",
+    "changed_parameter": {
+      "max_iter": 30000
+    },
+    "n_iter": 30000,
+    "seconds": 688.648745059967,
+    "warnings": [
+      {
+        "stage": "LOVO fit jump_12",
+        "category": "ConvergenceWarning",
+        "message": "Liblinear failed to converge, increase the number of iterations.",
+        "filename": "<isolated Python>/site-packages/sklearn/svm/_base.py",
+        "lineno": 1250
+      }
+    ],
+    "events": {
+      "takeoff_frame_index": 173,
+      "landing_frame_index": 199,
+      "takeoff_video_time_s": 2.8833333333333333,
+      "landing_video_time_s": 3.316666666666667,
+      "flight_time_s": 0.43333333333333335,
+      "timestamp_source": "nominal_frame_rate_fallback",
+      "frames_decoded": 291,
+      "ok": true,
+      "detection_method": "automatic",
+      "event_score_margin": 2.892976492802226,
+      "transition_score_margin": 0.09142063725915112,
+      "detection_note": "SVM score margins are not calibrated probabilities. Visually verify the annotated take-off and landing frames before accepting the result."
+    },
+    "fit_method": "same historical StandardScaler + LinearSVC expression in an independent worker"
+  },
+  {
+    "held_out": "training_dataset/jump_14.mp4",
+    "changed_parameter": {
+      "max_iter": 30000
+    },
+    "n_iter": 30000,
+    "seconds": 687.1489436626434,
+    "warnings": [
+      {
+        "stage": "LOVO fit jump_14",
+        "category": "ConvergenceWarning",
+        "message": "Liblinear failed to converge, increase the number of iterations.",
+        "filename": "<isolated Python>/site-packages/sklearn/svm/_base.py",
+        "lineno": 1250
+      }
+    ],
+    "events": {
+      "takeoff_frame_index": 136,
+      "landing_frame_index": 159,
+      "takeoff_video_time_s": 2.2666666666666666,
+      "landing_video_time_s": 2.65,
+      "flight_time_s": 0.38333333333333336,
+      "timestamp_source": "nominal_frame_rate_fallback",
+      "frames_decoded": 291,
+      "ok": true,
+      "detection_method": "automatic",
+      "event_score_margin": 1.8948727717132685,
+      "transition_score_margin": 0.15414643419875912,
+      "detection_note": "SVM score margins are not calibrated probabilities. Visually verify the annotated take-off and landing frames before accepting the result."
+    },
+    "fit_method": "same historical StandardScaler + LinearSVC expression in an independent worker"
+  },
+  {
+    "held_out": "training_dataset/jump_15.mp4",
+    "changed_parameter": {
+      "max_iter": 30000
+    },
+    "n_iter": 30000,
+    "seconds": 633.8529114723206,
+    "warnings": [
+      {
+        "stage": "LOVO fit jump_15",
+        "category": "ConvergenceWarning",
+        "message": "Liblinear failed to converge, increase the number of iterations.",
+        "filename": "<isolated Python>/site-packages/sklearn/svm/_base.py",
+        "lineno": 1250
+      }
+    ],
+    "events": {
+      "takeoff_frame_index": 160,
+      "landing_frame_index": 189,
+      "takeoff_video_time_s": 2.6666666666666665,
+      "landing_video_time_s": 3.15,
+      "flight_time_s": 0.48333333333333334,
+      "timestamp_source": "nominal_frame_rate_fallback",
+      "frames_decoded": 291,
+      "ok": true,
+      "detection_method": "automatic",
+      "event_score_margin": 0.8796485629768576,
+      "transition_score_margin": 0.3895183748136988,
+      "detection_note": "SVM score margins are not calibrated probabilities. Visually verify the annotated take-off and landing frames before accepting the result."
+    },
+    "fit_method": "same historical StandardScaler + LinearSVC expression in an independent worker"
+  },
+  {
+    "held_out": "training_dataset/jump_16.mp4",
+    "changed_parameter": {
+      "max_iter": 30000
+    },
+    "n_iter": 30000,
+    "seconds": 680.8031890392303,
+    "warnings": [
+      {
+        "stage": "LOVO fit jump_16",
+        "category": "ConvergenceWarning",
+        "message": "Liblinear failed to converge, increase the number of iterations.",
+        "filename": "<isolated Python>/site-packages/sklearn/svm/_base.py",
+        "lineno": 1250
+      }
+    ],
+    "events": {
+      "takeoff_frame_index": 150,
+      "landing_frame_index": 173,
+      "takeoff_video_time_s": 2.5,
+      "landing_video_time_s": 2.8833333333333333,
+      "flight_time_s": 0.38333333333333336,
+      "timestamp_source": "nominal_frame_rate_fallback",
+      "frames_decoded": 291,
+      "ok": true,
+      "detection_method": "automatic",
+      "event_score_margin": 1.387131210734155,
+      "transition_score_margin": 0.04270735394155334,
+      "detection_note": "SVM score margins are not calibrated probabilities. Visually verify the annotated take-off and landing frames before accepting the result."
+    },
+    "fit_method": "same historical StandardScaler + LinearSVC expression in an independent worker"
+  },
+  {
+    "held_out": "training_dataset/jump_17.mp4",
+    "changed_parameter": {
+      "max_iter": 30000
+    },
+    "n_iter": 18770,
+    "seconds": 406.92181968688965,
+    "warnings": [],
+    "events": {
+      "takeoff_frame_index": 99,
+      "landing_frame_index": 127,
+      "takeoff_video_time_s": 1.65,
+      "landing_video_time_s": 2.1166666666666667,
+      "flight_time_s": 0.4666666666666667,
+      "timestamp_source": "nominal_frame_rate_fallback",
+      "frames_decoded": 291,
+      "ok": true,
+      "detection_method": "automatic",
+      "event_score_margin": 1.0972741054526483,
+      "transition_score_margin": 0.424200626177085,
+      "detection_note": "SVM score margins are not calibrated probabilities. Visually verify the annotated take-off and landing frames before accepting the result."
+    },
+    "fit_method": "same historical StandardScaler + LinearSVC expression in an independent worker"
+  },
+  {
+    "held_out": "training_dataset/jump_18.mp4",
+    "changed_parameter": {
+      "max_iter": 30000
+    },
+    "n_iter": 10578,
+    "seconds": 244.3555407524109,
+    "warnings": [],
+    "events": {
+      "takeoff_frame_index": 167,
+      "landing_frame_index": 192,
+      "takeoff_video_time_s": 2.783333333333333,
+      "landing_video_time_s": 3.2,
+      "flight_time_s": 0.4166666666666667,
+      "timestamp_source": "nominal_frame_rate_fallback",
+      "frames_decoded": 291,
+      "ok": true,
+      "detection_method": "automatic",
+      "event_score_margin": 0.7110193232766824,
+      "transition_score_margin": 0.058197010643668945,
+      "detection_note": "SVM score margins are not calibrated probabilities. Visually verify the annotated take-off and landing frames before accepting the result."
+    },
+    "fit_method": "same historical StandardScaler + LinearSVC expression in an independent worker"
+  },
+  {
+    "held_out": "training_dataset/jump_19.mp4",
+    "changed_parameter": {
+      "max_iter": 30000
+    },
+    "n_iter": 30000,
+    "seconds": 533.448114156723,
+    "warnings": [
+      {
+        "stage": "LOVO fit jump_19",
+        "category": "ConvergenceWarning",
+        "message": "Liblinear failed to converge, increase the number of iterations.",
+        "filename": "<isolated Python>/site-packages/sklearn/svm/_base.py",
+        "lineno": 1250
+      }
+    ],
+    "events": {
+      "takeoff_frame_index": 145,
+      "landing_frame_index": 171,
+      "takeoff_video_time_s": 2.4166666666666665,
+      "landing_video_time_s": 2.85,
+      "flight_time_s": 0.43333333333333335,
+      "timestamp_source": "nominal_frame_rate_fallback",
+      "frames_decoded": 291,
+      "ok": true,
+      "detection_method": "automatic",
+      "event_score_margin": 1.1050013575044806,
+      "transition_score_margin": 0.12450189328413158,
+      "detection_note": "SVM score margins are not calibrated probabilities. Visually verify the annotated take-off and landing frames before accepting the result."
+    },
+    "fit_method": "same historical StandardScaler + LinearSVC expression in an independent worker"
+  },
+  {
+    "held_out": "training_dataset/jump_20.mp4",
+    "changed_parameter": {
+      "max_iter": 30000
+    },
+    "n_iter": 21155,
+    "seconds": 387.9078266620636,
+    "warnings": [],
+    "events": {
+      "takeoff_frame_index": 129,
+      "landing_frame_index": 147,
+      "takeoff_video_time_s": 2.15,
+      "landing_video_time_s": 2.45,
+      "flight_time_s": 0.3,
+      "timestamp_source": "nominal_frame_rate_fallback",
+      "frames_decoded": 291,
+      "ok": true,
+      "detection_method": "automatic",
+      "event_score_margin": 0.1809454994970614,
+      "transition_score_margin": 0.09822338928057268,
+      "detection_note": "SVM score margins are not calibrated probabilities. Visually verify the annotated take-off and landing frames before accepting the result."
+    },
+    "fit_method": "same historical StandardScaler + LinearSVC expression in an independent worker"
+  }
+]
