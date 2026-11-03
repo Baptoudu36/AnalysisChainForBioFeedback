@@ -58,10 +58,6 @@ The [manual file-review protocol](docs/MANUAL_REVIEW.md) uses the existing OpenC
 
 Historical Pi requirements: Raspberry Pi OS, Pi 3B+, Camera V2.1, Picamera2/libcamera, gpiozero, GPIO 17 button and FFmpeg for jumps; MCP3008 with SPI wiring, an appropriate ECG analogue front-end and pigpio daemon for DMA. The physically wired channel must be checked for that session; CH1 is a September metadata value, not a universal wiring instruction. Pi dependency notes are retained in each project's requirements.txt. The hardware was returned; corrected code has not been retested on Pi. JumpLab Pi is Victor’s separate MVP, not this historically tested prototype.
 
-## Before submission
-
-The group should review the candidate, contributions and media sharing; clarify push-off measurement and the six other recovered-session participants; match Victor’s demo to the October clip if evidence permits; complete the GUI protocol; and confirm deadline/delivery route. Missing raw October ECG, unresolved LOVO discrepancies, unverified physical timing and absent reference-instrument/clinical validation remain stated limitations. Private notes, chats, credentials, environments, caches and backups are excluded.
-
 ## Contribution branch
 
 Original sources and attribution are described in [SOURCE_PROVENANCE.md](docs/SOURCE_PROVENANCE.md). Offline regression commands are in [tests/README.md](tests/README.md); targeted changes are in [SOFTWARE_FIXES.md](docs/SOFTWARE_FIXES.md). The candidate report remains for group review. Received archives, local environments, private course notes and the full submission ZIP are outside Git.
