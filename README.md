@@ -1,6 +1,6 @@
-# Raspberry Pi measurement chains for biofeedback
+# Analysis Chain for BioFeedback course - Group Project about 2 Raspberry Pi measurements chains 
 
-**Group review candidate — 22 October 2026.** Baptiste Augros, Joël Singer and Victor Salvat. University of Montpellier, UFR STAPS; course taught by Gilles Despaux, 2026–2027.
+**Group review candidate — 4 November 2026.** Baptiste Augros, Joël Singer and Victor Salvat. University of Montpellier, UFR STAPS; course taught by Gilles Despaux, 2026–2027.
 
 Read the [Word report](Report/Report-AnalysisChainforBiofeedback.docx) or [PDF report](Report/Report-AnalysisChainforBiofeedback.pdf). 
 
