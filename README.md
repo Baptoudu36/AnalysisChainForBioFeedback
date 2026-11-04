@@ -52,7 +52,7 @@ confirmed or corrected by the operator. Take-off = first frame with no foot on t
 frame with a foot back on the ground. With flight time T, mass m and push-off distance d we can compute some interesting metrics like :
 h = gT²/8, v₀ = gT/2, F = mg(1 + h/d), P = F·v₀/2 (Bosco et al., 1983; Samozino et al., 2008).
 
-**ECG.** The MCP3008 is sampled either by a software-scheduled loop (v1.2.0) or by a pigpio DMA waveform that
+**ECG.** The MCP3008 is sampled by a pigpio DMA waveform that
 generates every SPI transaction in hardware (v2.0.0). The analysis checks timing and ADC saturation,
 applies a 4th-order Butterworth band-pass (0.5–40 Hz, forward-backward), detects R peaks with robust
 prominence/height thresholds, keeps RR intervals between 35 and 180 bpm and reports median heart rate.
@@ -71,8 +71,9 @@ reproductions ran on 3.10), Git.
   between-subject conclusion is possible; HRV values are illustrations.
 - No reference instrument: jump height, force and power were not compared with a force plate, heart rate
   not with a clinical ECG. Only the detector timing was checked, against our own annotations.
-- Force and power depend on a typed push-off distance whose measurement method was not recorded.
-- The detector was trained and tested in one room with one camera position : it has been and still sensitive to light,
+- Force and power depend on a push-off distance measured by subtracting the height at a « comfortable »
+  position (subject to variability in unused individuals) to leg length (robust).
+- The detector was trained and tested in one room with one camera position : it is sensitive to light,
   framing and post-landing movements.
 - Timing: 60 fps limits flight time to whole frames; sensor-to-frame alignment and the DMA clock were not
   checked against an independent clock; all seven Pi sessions used the nominal-fps fallback.
@@ -81,11 +82,11 @@ reproductions ran on 3.10), Git.
 
 - **Baptiste Augros** — initial ECG scripts (UDP streaming, first `ecg_lab` version), offline analyses, Squat Jump
   Explorer, report writing & review, repository integration.
-- **Joël Singer** — squat-jump Pi prototype (script, recordings and testings), training videos and manual annotations, the seven Pi sessions, report writing & review.
+- **Joël Singer** — squat-jump Pi prototype (script, recordings and testings), training videos and manual annotations, DMA clock conception, the seven Pi sessions, report writing & review.
 - **Victor Salvat** — `ecg_lab` versions up to the DMA version (v2.0.0), design the ECG Explorer, permits reproductions, report writing & review, robustness corrections and testings.
 
 Parts of the code and of the offline analyses were drafted with AI assistants, then reviewed, tested and
-integrated by the group. This remains a course project and not a validated measurement or clinical instrument.
+integrated by the group. 
 
 ## References
 
